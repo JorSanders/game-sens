@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ow-sens — Overwatch scoped sensitivity calculator & charts
+   game-sens — Overwatch scoped sensitivity calculator & charts
    All math on this page comes from three formulas (F1, F2 in degrees,
    p = monitor-distance fraction 0..1):
 
