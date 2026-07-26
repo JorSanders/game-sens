@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ow-sens.jor.dev/sitemap.xml
+Sitemap: https://game-sens.jor.dev/sitemap.xml

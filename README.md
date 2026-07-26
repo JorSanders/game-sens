@@ -1,6 +1,6 @@
 # Overwatch 1:1 Scoped Sens
 
-Live at **https://ow-sens.jor.dev/**
+Live at **https://game-sens.jor.dev/**
 
 A static site with per-hero 1:1 values for Overwatch's **Relative Aim Sensitivity While
 Zoomed**, an interactive calculator, and an explanation of why no single value can be 1:1
@@ -21,7 +21,7 @@ index.html      the whole site (tables, calculator, chart, article, JSON-LD)
 css/style.css   styles (responsive, light/dark, WCAG AA)
 js/app.js       hero data, formulas, calculator, Chart.js setup
 favicon.svg     favicon
-CNAME           custom domain for GitHub Pages (ow-sens.jor.dev)
+CNAME           custom domain for GitHub Pages (game-sens.jor.dev)
 .nojekyll       disables Jekyll processing on GitHub Pages
 robots.txt      crawler policy + sitemap pointer
 sitemap.xml     sitemap
@@ -30,7 +30,7 @@ sitemap.xml     sitemap
 ## Deployment
 
 Hosted on GitHub Pages from the `main` branch, root folder, with the custom domain
-`ow-sens.jor.dev` (CNAME record pointing to `jorsanders.github.io`). Pushing to `main`
+`game-sens.jor.dev` (CNAME record pointing to `jorsanders.github.io`). Pushing to `main`
 deploys automatically.
 
 ## The math
