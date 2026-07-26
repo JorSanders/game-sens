@@ -48,6 +48,7 @@
       <li><a href="#monitor-distance">Monitor distance</a></li>
       <li><a href="#formulas">Formulas</a></li>
       <li><a href="#calculator">Calculator</a></li>
+      <li><a href="#other-games">CS2 &amp; Valorant</a></li>
     </ul>
   </nav>
 </header>
@@ -273,6 +274,74 @@
       <li><a href="https://us.forums.blizzard.com/en/overwatch/t/any-tips-for-settings/993665?page=2" rel="noopener">Blizzard forums (51.47%, same as Ashe)</a></li>
       <li><a href="https://us.forums.blizzard.com/en/overwatch/t/emre-relative-aim-sensitivity/1000383" rel="noopener">Blizzard forums (measured, 54.69%)</a></li>
       <li><a href="https://x.com/Renanthera/status/1903563534036029807" rel="noopener">@Renanthera on X (62.50%)</a></li>
+    </ul>
+  </section>
+
+  <!-- ============================= CS2 & VALORANT ============================= -->
+  <section id="other-games" aria-labelledby="other-games-h">
+    <h2 id="other-games-h">The same math in CS2 and Valorant</h2>
+    <p>
+      Monitor distance is not an Overwatch quirk: any game that lowers FOV while scoping
+      runs into the same tangent stretch. CS2 and Valorant just use one setting for every
+      weapon instead of a per-hero value, and their defaults sit at different match points.
+    </p>
+
+    <h3>CS2</h3>
+    <p>
+      The default <code>zoom_sensitivity_ratio 1</code> matches at the edge of a 4:3
+      screen, which on a 16:9 monitor (106.26° hipfire FOV) is 75% monitor distance.
+      A 0% (crosshair) match instead needs
+    </p>
+    <p class="formula" aria-label="zoom sensitivity ratio equals F1 over F2, times tangent of F2 over 2, divided by tangent of F1 over 2">
+      zoom_sensitivity_ratio&nbsp;=&nbsp;(F1&nbsp;/&nbsp;F2)&nbsp;×&nbsp;tan(F2/2)&nbsp;/&nbsp;tan(F1/2)
+    </p>
+    <p>
+      with FOVs in 4:3 degrees (hipfire F1 = 90°). One console variable covers every
+      weapon and zoom level, so you pick which zoom to be exact for. The community
+      standard <strong>0.818933</strong> is exact for the first zoom of the AWP and
+      SSG&nbsp;08; the other zooms land within about 4% of it.
+    </p>
+    <div class="table-wrap">
+      <table id="cs2-table">
+        <caption>Exact 0% monitor distance zoom_sensitivity_ratio per CS2 zoom level.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Weapon / zoom</th>
+            <th scope="col">Scoped FOV (4:3)</th>
+            <th scope="col">0% value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">AWP &amp; SSG 08, first zoom</th><td>40°</td><td class="your-value">0.818933</td></tr>
+          <tr><th scope="row">AUG &amp; SG 553</th><td>45°</td><td>0.828427</td></tr>
+          <tr><th scope="row">SSG 08, second zoom</th><td>15°</td><td>0.789915</td></tr>
+          <tr><th scope="row">AWP, second zoom</th><td>10°</td><td>0.787398</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Valorant</h3>
+    <p>
+      The scoped sensitivity multiplier default of 1.0 matches at the 16:9 screen edge,
+      100% monitor distance (sensitivity converters call it monitor distance vertical
+      177.78%). Scoped micro-adjustments near the crosshair therefore run faster than
+      hipfire by default, and values below 1 move the match point inward. Unlike
+      Overwatch's scoped FOVs, Valorant's per-zoom FOVs have no community-verified
+      table, and one multiplier covers everything from rifle ADS to the Operator's
+      second zoom, so no single exact 0% value exists. For an exact per-weapon value,
+      use the <a href="https://www.mouse-sensitivity.com/" rel="noopener">mouse-sensitivity.com</a>
+      calculator.
+    </p>
+
+    <p class="fineprint">
+      The CS2 values follow from the formula above and the community-measured scoped FOVs;
+      Valve publishes neither. Sources:
+    </p>
+    <ul class="fineprint">
+      <li><a href="https://www.teamfortress.tv/35467/on-the-correct-value-of-zoom-sensitivity-ratio" rel="noopener">teamfortress.tv (derivation of the 0% formula)</a></li>
+      <li><a href="https://www.teamfortress.tv/38968/zoom-sensitivity-tf2-csgo" rel="noopener">teamfortress.tv (0.818933 for CS:GO/CS2)</a></li>
+      <li><a href="https://steamcommunity.com/app/730/discussions/0/558747922173475209/" rel="noopener">Steam discussions (per-weapon scoped FOVs)</a></li>
+      <li><a href="https://www.mouse-sensitivity.com/forums/topic/7527-csgo-to-valorant-sens/" rel="noopener">mouse-sensitivity.com (Valorant 1.0 = MDV 177.78%, CS 1.0 = MDV 133.33%)</a></li>
     </ul>
   </section>
 
