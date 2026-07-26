@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Overwatch 1:1 Scoped Sensitivity Calculator &amp; Explainer (Ana, Widowmaker, Ashe, Emre, Freja)</title>
+  <meta name="description" content="Interactive calculator and full explanation of Overwatch's Relative Aim Sensitivity While Zoomed. Get the true 1:1 scoped sensitivity for Ana, Widowmaker, Ashe, Cassidy, Emre, and Freja, with the math, charts, and monitor-distance theory.">
+  <link rel="canonical" href="https://ow-sens.jor.dev/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Overwatch 1:1 Scoped Sensitivity Calculator &amp; Explainer">
+  <meta property="og:description" content="Why no scoped sensitivity is 1:1 everywhere, and how to compute the value that's 1:1 where it matters. Calculator + charts for every scoping hero.">
+  <meta property="og:url" content="https://ow-sens.jor.dev/">
+  <meta property="og:image" content="https://ow-sens.jor.dev/favicon.svg">
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Overwatch 1:1 Scoped Sensitivity Calculator &amp; Explainer">
+  <meta name="twitter:description" content="Calculator, charts, and the math behind Relative Aim Sensitivity While Zoomed for Ana, Widowmaker, Ashe, Cassidy, Emre, and Freja.">
+  <meta name="twitter:image" content="https://ow-sens.jor.dev/favicon.svg">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- JSON-LD structured data: TechArticle -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Overwatch Scoped Sensitivity: the math of Relative Aim Sensitivity While Zoomed",
+    "description": "An explanation of why no single scoped sensitivity value is 1:1 everywhere on a flat monitor, the tangent vs linear methods, and per-hero 1:1 values for Overwatch.",
+    "author": { "@type": "Person", "name": "ow-sens" },
+    "mainEntityOfPage": "https://ow-sens.jor.dev/",
+    "about": ["Overwatch", "mouse sensitivity", "field of view", "ADS sensitivity"]
+  }
+  </script>
+</head>
+<body>
+
+<header>
+  <h1>Overwatch 1:1 Scoped Sens</h1>
+  <p class="tagline">Per-hero 1:1 values, what 1:1 actually means, and how monitor distance fits in.</p>
+  <nav aria-label="Page sections">
+    <ul>
+      <li><a href="#recommended">Recommended values</a></li>
+      <li><a href="#what-1to1-means">What 1:1 means</a></li>
+      <li><a href="#monitor-distance">Monitor distance</a></li>
+      <li><a href="#formulas">Formulas</a></li>
+      <li><a href="#calculator">Calculator</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============================= RECOMMENDED ============================= -->
+  <section id="recommended" aria-labelledby="recommended-h">
+    <h2 id="recommended-h">Recommended</h2>
+    <div class="table-wrap">
+      <table id="rec-table">
+        <caption>1:1 scoped sensitivity at 0% monitor distance on 103 FOV for every hero.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Hero</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody><!-- filled by js/app.js --></tbody>
+      </table>
+    </div>
+
+    <p class="fineprint">
+      Different FOV or match point? Use the <a href="#calculator">interactive calculator</a>.
+    </p>
+  </section>
+
+  <!-- ============================= WHAT 1:1 MEANS ============================= -->
+  <section id="what-1to1-means" aria-labelledby="what-1to1-means-h">
+    <h2 id="what-1to1-means-h">What “1:1” even means</h2>
+    <p>
+      Scoping reduces your FOV, so the same mouse movement covers more screen
+      distance. <strong>Relative Aim Sensitivity While Zoomed</strong> is a per-hero angular
+      multiplier that compensates for the zoom, independent of DPI/cm-per-360.
+      At the right value, you move your mouse the same distance to reach a target on
+      screen whether you're scoped or not. That's “1:1”.
+    </p>
+  </section>
+
+  <!-- ============================= MONITOR DISTANCE ============================= -->
+  <section id="monitor-distance" aria-labelledby="monitor-distance-h">
+    <h2 id="monitor-distance-h">Why 1:1 near the crosshair ≠ 1:1 near the edge</h2>
+    <p>
+      Your mouse maps centimeters to <strong>degrees of rotation</strong>, a fixed number of
+      degrees per cm, regardless of FOV. But your flat monitor maps degrees to
+      <strong>pixels</strong> through a tangent:
+    </p>
+    <p class="formula" aria-label="screen position equals viewing distance times the tangent of the angle">
+      screen&nbsp;position&nbsp;=&nbsp;distance&nbsp;×&nbsp;tan(angle)
+    </p>
+    <p>
+      The tangent grows faster and faster as the angle increases, so the screen edges are
+      “stretched”: one degree of rotation near the crosshair moves the image only a few
+      pixels, while one degree near the edge moves it many. Equal angles, unequal pixels.
+    </p>
+
+    <figure class="diagram-figure">
+      <svg viewBox="0 0 640 300" class="diagram" role="img"
+           aria-labelledby="diagram-title diagram-desc">
+        <title id="diagram-title">Top-down view of an eye looking at a flat screen</title>
+        <desc id="diagram-desc">Rays leave the eye at equal 10-degree steps. Where they land on the flat screen, the spacing between landing points grows wider toward the screen edge, showing the tangent stretch.</desc>
+        <!-- eye -->
+        <circle cx="60" cy="150" r="10" class="d-eye"/>
+        <text x="60" y="185" text-anchor="middle" class="d-label">eye</text>
+        <!-- flat screen (vertical line) -->
+        <line x1="520" y1="20" x2="520" y2="280" class="d-screen"/>
+        <text x="560" y="150" class="d-label">flat screen</text>
+        <!-- equal-angle rays from eye: 0, ±10, ±20, ±30 degrees.
+             landing y = 150 - 460*tan(angle) -->
+        <g class="d-rays">
+          <line x1="60" y1="150" x2="520" y2="150"/>
+          <line x1="60" y1="150" x2="520" y2="68.9"/>
+          <line x1="60" y1="150" x2="520" y2="231.1"/>
+          <line x1="60" y1="150" x2="520" y2="-17.4" clip-path="url(#dclip)"/>
+          <line x1="60" y1="150" x2="520" y2="317.4" clip-path="url(#dclip)"/>
+        </g>
+        <clipPath id="dclip"><rect x="0" y="20" width="640" height="260"/></clipPath>
+        <!-- landing points at 0 and ±10 deg (±20 deg exits past the drawn screen edge) -->
+        <g class="d-hits">
+          <circle cx="520" cy="150" r="5"/>
+          <circle cx="520" cy="68.9" r="5"/>
+          <circle cx="520" cy="231.1" r="5"/>
+        </g>
+        <!-- spacing braces / labels: first 10° spans 81 px, the next 10° spans 86 px and keeps growing -->
+        <text x="498" y="115" text-anchor="end" class="d-label">first 10° ≈ 81 px</text>
+        <text x="498" y="45"  text-anchor="end" class="d-label">next 10° ≈ 86 px…</text>
+        <line x1="505" y1="150" x2="505" y2="68.9" class="d-brace"/>
+        <line x1="505" y1="68.9" x2="505" y2="20" class="d-brace d-brace2"/>
+      </svg>
+      <figcaption>
+        Equal 10° steps of rotation land farther and farther apart toward the edge of a flat
+        screen. Pixels-per-degree is lowest at the crosshair and highest at the edge.
+      </figcaption>
+    </figure>
+
+    <div class=”chart-block”>
+      <h3>Exact 1:1 at every point on screen</h3>
+      <p>
+        The exact 1:1 value changes depending on where the target is on screen.
+        Left = crosshair, right = screen edge.
+      </p>
+      <div class="chart-frame">
+        <canvas id="chart-overview" role="img"
+                aria-label="Line chart overlaying every hero's exact-1:1 scoped sensitivity as a function of target distance from the crosshair (0% center to 100% edge)."></canvas>
+      </div>
+      <div class="visually-hidden" id="chart-overview-table"></div>
+    </div>
+
+  </section>
+
+  <!-- ============================= FORMULAS ============================= -->
+  <section id="formulas" aria-labelledby="formulas-h">
+    <h2 id="formulas-h">The formulas</h2>
+    <p>
+      Let <var>F₁</var> = hipfire horizontal FOV (default 103), <var>F₂</var> = the hero's
+      scoped horizontal FOV, and <var>p</var> = monitor-distance fraction (0…1). Angles are in
+      degrees (converted to radians for tan/atan in the code).
+    </p>
+
+    <h3>Linear / FOV-ratio = 100% monitor distance</h3>
+    <p class="formula">sens% = (F₂ / F₁) × 100</p>
+
+    <h3>Tangent (“true 1:1”) = 0% monitor distance</h3>
+    <p class="formula">sens% = ( tan(F₂⁄2) / tan(F₁⁄2) ) × 100</p>
+
+    <h3>General: exact 1:1 for a target at monitor distance p</h3>
+    <p class="formula">sens%(p) = ( atan( p·tan(F₂⁄2) ) / atan( p·tan(F₁⁄2) ) ) × 100</p>
+    <p>
+      As <var>p</var> → 0 this reduces to the tangent method; at <var>p</var> = 1 it equals the
+      linear method. The calculator and chart on this page are computed from these three
+      lines, nothing else.
+    </p>
+  </section>
+
+  <!-- ============================= CALCULATOR ============================= -->
+  <section id="calculator" aria-labelledby="calculator-h">
+    <h2 id="calculator-h">Interactive calculator</h2>
+    <p>
+      Pick your hipfire FOV and where on screen you want scoped aim to match hipfire
+      exactly. The table gives you the number to enter in-game.
+    </p>
+
+    <form class="calc-controls" aria-describedby="calc-status">
+      <div class="control">
+        <label for="fov-slider">Unscoped (hipfire) FOV: <output id="fov-value" for="fov-slider">103</output>°</label>
+        <input type="range" id="fov-slider" min="80" max="103" step="1" value="103"
+               aria-describedby="fov-help">
+        <p class="help" id="fov-help">Overwatch's FOV setting is horizontal FOV. Default and most common: 103.</p>
+      </div>
+
+      <div class="control">
+        <label for="md-slider">Monitor distance: <output id="md-value" for="md-slider">10</output>%</label>
+        <input type="range" id="md-slider" min="0" max="100" step="1" value="10"
+               aria-describedby="md-help">
+        <p class="help" id="md-help">
+          0% = 1:1 at the crosshair. 100% = 1:1 at the screen edge.
+        </p>
+      </div>
+    </form>
+
+    <p id="calc-status" class="status" role="status" aria-live="polite"></p>
+
+    <div class="table-wrap">
+      <table id="calc-table">
+        <caption>Relative Aim Sensitivity While Zoomed per hero for your settings. Values rounded to 2 decimals.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Hero</th>
+            <th scope="col">0% monitor distance</th>
+            <th scope="col">Your value</th>
+            <th scope="col">100% monitor distance</th>
+            <th scope="col">Zoom</th>
+            <th scope="col">Scoped FOV</th>
+          </tr>
+        </thead>
+        <tbody><!-- filled by js/app.js --></tbody>
+      </table>
+    </div>
+
+    <p class="fineprint">
+      There is no official Blizzard source for the scope multipliers or scoped FOVs.
+      The community reverse-engineered them by measuring cm/360 scoped vs unscoped
+      and back-solving the FOV from the sensitivity formula.
+      Sources (16:9):
+    </p>
+    <ul class="fineprint" id="source-list"><!-- filled by js/app.js --></ul>
+  </section>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>
