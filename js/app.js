@@ -12,21 +12,14 @@
 
 /* ----------------------------- hero data ------------------------------- */
 /* Scoped horizontal FOV (F2) is the source of truth; everything else is
-   computed. Each hero links to the community source documenting the FOV or
-   the 1:1 value it was back-solved from. */
+   computed. Community sources for these values are listed in index.html. */
 const HEROES = [
-  { name: "Ana",        fov2: 50.94,
-    source: { label: "Blizzard forums (FOV 50.94, 37.89%)", url: "https://us.forums.blizzard.com/en/overwatch/t/scoped-unscoped-11-is-4946-not-3789-on-anawidow/795597" } },
-  { name: "Widowmaker", fov2: 50.94,
-    source: { label: "Blizzard forums (FOV 50.94, 37.89%)", url: "https://us.forums.blizzard.com/en/overwatch/t/scoped-unscoped-11-is-4946-not-3789-on-anawidow/795597" } },
-  { name: "Ashe",       fov2: 66,
-    source: { label: "Blizzard forums (51.47%)", url: "https://us.forums.blizzard.com/en/overwatch/t/ashe-zoom-sensitivity/609782" } },
-  { name: "Cassidy",    fov2: 66,
-    source: { label: "Blizzard forums (51.47%, same as Ashe)", url: "https://us.forums.blizzard.com/en/overwatch/t/any-tips-for-settings/993665?page=2" } },
-  { name: "Emre",       fov2: 69.3,
-    source: { label: "Blizzard forums (measured, 54.69%)", url: "https://us.forums.blizzard.com/en/overwatch/t/emre-relative-aim-sensitivity/1000383" } },
-  { name: "Freja",      fov2: 76.3,
-    source: { label: "@Renanthera on X (62.50%)", url: "https://x.com/Renanthera/status/1903563534036029807" } },
+  { name: "Ana",        fov2: 50.94 },
+  { name: "Widowmaker", fov2: 50.94 },
+  { name: "Ashe",       fov2: 66 },
+  { name: "Cassidy",    fov2: 66 },
+  { name: "Emre",       fov2: 69.3 },
+  { name: "Freja",      fov2: 76.3 },
 ];
 
 /* Heroes sharing the same scoped FOV have identical curves, so charts show
@@ -78,42 +71,6 @@ const mdValue   = document.getElementById("md-value");
 const statusEl  = document.getElementById("calc-status");
 const tableBody = document.querySelector("#calc-table tbody");
 
-/* -------------------------- recommended table --------------------------- */
-
-/* Fixed reference values: crosshair-matched (0%) at the default 103 FOV. */
-function renderRecommended() {
-  const tbody = document.querySelector("#rec-table tbody");
-  for (const hero of HEROES) {
-    const tr = document.createElement("tr");
-    const th = document.createElement("th");
-    th.scope = "row";
-    th.textContent = hero.name;
-    tr.appendChild(th);
-    const td = document.createElement("td");
-    td.className = "your-value";
-    td.textContent = fmt(sensTangent(103, hero.fov2)) + "%";
-    tr.appendChild(td);
-    tbody.appendChild(tr);
-  }
-}
-
-/* Render the source list below the calculator table (deduplicated by URL). */
-function renderSources() {
-  const ul = document.getElementById("source-list");
-  const seen = new Set();
-  for (const hero of HEROES) {
-    if (seen.has(hero.source.url)) continue;
-    seen.add(hero.source.url);
-    const li = document.createElement("li");
-    const a = document.createElement("a");
-    a.href = hero.source.url;
-    a.textContent = hero.source.label;
-    a.rel = "noopener";
-    li.appendChild(a);
-    ul.appendChild(li);
-  }
-}
-
 /* ----------------------------- calculator ------------------------------- */
 
 function renderTable() {
@@ -148,10 +105,13 @@ function renderTable() {
 
     tableBody.appendChild(tr);
   }
+}
 
-  // aria-live announcement (polite): a short summary, not the whole table.
+// aria-live announcement (polite): a short summary, not the whole table.
+// Only called from the slider handlers so page load stays silent.
+function announceUpdate() {
   statusEl.textContent =
-    `Table updated for ${f1}° hipfire FOV at ${mdSlider.value}% monitor distance.`;
+    `Table updated for ${fovSlider.value}° hipfire FOV at ${mdSlider.value}% monitor distance.`;
 }
 
 /* ------------------------------- charts --------------------------------- */
@@ -259,11 +219,13 @@ function buildHiddenTable() {
 fovSlider.addEventListener("input", () => {
   fovValue.textContent = fovSlider.value;
   renderTable();
+  announceUpdate();
 });
 
 mdSlider.addEventListener("input", () => {
   mdValue.textContent = mdSlider.value;
-  renderTable(); // monitor distance affects only the calculator, not the curves
+  renderTable(); // monitor distance affects only the calculator, not the chart
+  announceUpdate();
 });
 
 // Rebuild chart theme colors when the OS color scheme flips.
@@ -283,9 +245,9 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () 
   }
 });
 
-renderRecommended();
+// The default table state is baked into the HTML (no layout shift, works
+// without JS). Re-render once in case the browser restored slider positions.
 renderTable();
-renderSources();
 
 // Chart.js is loaded with `defer` before this script, so it's available here;
 // guard anyway in case the CDN is blocked — calculator still works without it.

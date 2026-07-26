@@ -66,7 +66,14 @@
             <th scope="col">Value</th>
           </tr>
         </thead>
-        <tbody><!-- filled by js/app.js --></tbody>
+        <tbody>
+          <tr><th scope="row">Ana</th><td class="your-value">37.89%</td></tr>
+          <tr><th scope="row">Widowmaker</th><td class="your-value">37.89%</td></tr>
+          <tr><th scope="row">Ashe</th><td class="your-value">51.66%</td></tr>
+          <tr><th scope="row">Cassidy</th><td class="your-value">51.66%</td></tr>
+          <tr><th scope="row">Emre</th><td class="your-value">54.98%</td></tr>
+          <tr><th scope="row">Freja</th><td class="your-value">62.48%</td></tr>
+        </tbody>
       </table>
     </div>
 
@@ -223,7 +230,15 @@
             <th scope="col">Scoped FOV</th>
           </tr>
         </thead>
-        <tbody><!-- filled by js/app.js --></tbody>
+        <!-- default state (103 FOV, 10% monitor distance); js/app.js re-renders on slider input -->
+        <tbody>
+          <tr><th scope="row">Ana</th><td>37.89%</td><td class="your-value">38.06%</td><td>49.46%</td><td>2.64×</td><td>50.94°</td></tr>
+          <tr><th scope="row">Widowmaker</th><td>37.89%</td><td class="your-value">38.06%</td><td>49.46%</td><td>2.64×</td><td>50.94°</td></tr>
+          <tr><th scope="row">Ashe</th><td>51.66%</td><td class="your-value">51.85%</td><td>64.08%</td><td>1.94×</td><td>66°</td></tr>
+          <tr><th scope="row">Cassidy</th><td>51.66%</td><td class="your-value">51.85%</td><td>64.08%</td><td>1.94×</td><td>66°</td></tr>
+          <tr><th scope="row">Emre</th><td>54.98%</td><td class="your-value">55.18%</td><td>67.28%</td><td>1.82×</td><td>69.3°</td></tr>
+          <tr><th scope="row">Freja</th><td>62.48%</td><td class="your-value">62.68%</td><td>74.08%</td><td>1.60×</td><td>76.3°</td></tr>
+        </tbody>
       </table>
     </div>
 
@@ -233,7 +248,13 @@
       and back-solving the FOV from the sensitivity formula.
       Sources (16:9):
     </p>
-    <ul class="fineprint" id="source-list"><!-- filled by js/app.js --></ul>
+    <ul class="fineprint">
+      <li><a href="https://us.forums.blizzard.com/en/overwatch/t/scoped-unscoped-11-is-4946-not-3789-on-anawidow/795597" rel="noopener">Blizzard forums (FOV 50.94, 37.89%)</a></li>
+      <li><a href="https://us.forums.blizzard.com/en/overwatch/t/ashe-zoom-sensitivity/609782" rel="noopener">Blizzard forums (51.47%)</a></li>
+      <li><a href="https://us.forums.blizzard.com/en/overwatch/t/any-tips-for-settings/993665?page=2" rel="noopener">Blizzard forums (51.47%, same as Ashe)</a></li>
+      <li><a href="https://us.forums.blizzard.com/en/overwatch/t/emre-relative-aim-sensitivity/1000383" rel="noopener">Blizzard forums (measured, 54.69%)</a></li>
+      <li><a href="https://x.com/Renanthera/status/1903563534036029807" rel="noopener">@Renanthera on X (62.50%)</a></li>
+    </ul>
   </section>
 
 </main>
