@@ -199,7 +199,10 @@ function buildCharts() {
   Chart.defaults.animation = reducedMotion ? false : { duration: 400 };
   Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
 
-  const f1 = Number(fovSlider.value);
+  // The chart is intentionally static at the default FOV (the slider only
+  // drives the calculator table). Don't read the slider here: browsers can
+  // restore a moved slider position across reloads.
+  const f1 = 103;
 
   /* ---- overview: all heroes' curves ---- */
   overviewChart = new Chart(document.getElementById("chart-overview"), {

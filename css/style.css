@@ -169,13 +169,6 @@ td.your-value { font-weight: 700; color: var(--accent2); }
   font-size: 1.05rem;
   overflow-x: auto;
 }
-code {
-  background: var(--formula-bg);
-  border-radius: 3px;
-  padding: 0.1em 0.35em;
-  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
-}
-
 /* --- diagram ------------------------------------------------------------ */
 .diagram-figure { margin: 1.5rem 0; }
 .diagram {
