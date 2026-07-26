@@ -182,6 +182,8 @@ td.your-value { font-weight: 700; color: var(--accent2); }
 .d-screen { stroke: var(--text); stroke-width: 5; }
 .d-rays line { stroke: var(--text-muted); stroke-width: 1.5; stroke-dasharray: 6 4; }
 .d-hits circle { fill: var(--accent); }
+.d-arcs path { fill: none; stroke: var(--accent2); stroke-width: 2; }
+.d-angle text { fill: var(--accent2); font-size: 13px; font-family: inherit; }
 .d-label { fill: var(--text); font-size: 14px; font-family: inherit; }
 .d-brace { stroke: var(--accent); stroke-width: 3; }
 .d-brace2 { opacity: 0.6; }
