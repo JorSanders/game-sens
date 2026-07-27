@@ -1,5 +1,5 @@
 /* ==========================================================================
-   game-sens — Overwatch scoped sensitivity calculator & charts
+   game-sens — scoped sensitivity math, chart, and cross-game hipfire calculator
    All math on this page comes from three formulas (F1, F2 in degrees,
    p = monitor-distance fraction 0..1):
 
@@ -23,8 +23,7 @@ const HEROES = [
 ];
 
 /* Heroes sharing the same scoped FOV have identical curves, so charts show
-   one series per FOV group (e.g. "Ana / Widowmaker"). The calculator table
-   stays per-hero. */
+   one series per FOV group (e.g. "Ana / Widowmaker"). */
 const GROUPS = (() => {
   const byFov = new Map();
   for (const hero of HEROES) {
@@ -63,56 +62,96 @@ function sensAt(f1, f2, p) {
 
 const fmt = (x) => x.toFixed(2);
 
-/* ------------------------------ DOM refs -------------------------------- */
-const fovSlider = document.getElementById("fov-slider");
-const mdSlider  = document.getElementById("md-slider");
-const fovValue  = document.getElementById("fov-value");
-const mdValue   = document.getElementById("md-value");
-const statusEl  = document.getElementById("calc-status");
-const tableBody = document.querySelector("#calc-table tbody");
+/* ----------------------- cross-game hipfire matching --------------------- */
+/* 0% hipfire match across games: equal on-screen movement per cm at the
+   crosshair means equal yaw·sens / tan(F/2), with F the actual 16:9 hFOV.
+   yaw = degrees of rotation per mouse count per sensitivity unit. */
 
-/* ----------------------------- calculator ------------------------------- */
+const hipBase       = document.getElementById("hip-base");
+const hipSens       = document.getElementById("hip-sens");
+const hipDpi        = document.getElementById("hip-dpi");
+const hipOwFov      = document.getElementById("hip-ow-fov");
+const hipOwFovOut   = document.getElementById("hip-ow-fov-value");
+const hipApexFov    = document.getElementById("hip-apex-fov");
+const hipApexFovOut = document.getElementById("hip-apex-fov-value");
+const hipStatus     = document.getElementById("hip-status");
+const hipBody       = document.querySelector("#hipfire-table tbody");
 
-function renderTable() {
-  const f1 = Number(fovSlider.value);
-  const p  = Number(mdSlider.value) / 100;
+/* proEdpi = the eDPI band most pros run (sources in the approach section). */
+const HIP_GAMES = {
+  overwatch: { label: "Overwatch",    yaw: 0.0066, proEdpi: [3200, 5600], t: () => Math.tan((Number(hipOwFov.value) / 2) * DEG) },
+  cs2:       { label: "CS2",          yaw: 0.022,  proEdpi: [600, 1200],  t: () => 4 / 3 },
+  valorant:  { label: "Valorant",     yaw: 0.07,   proEdpi: [200, 400],   t: () => Math.tan((103 / 2) * DEG) },
+  apex:      { label: "Apex Legends", yaw: 0.022,  proEdpi: [600, 1600],  t: () => (4 / 3) * Math.tan((Number(hipApexFov.value) / 2) * DEG) },
+};
 
-  tableBody.innerHTML = "";
-  for (const hero of HEROES) {
-    const tr = document.createElement("tr");
+function renderRow(tbody, name, cells, highlightIndex) {
+  const tr = document.createElement("tr");
+  const th = document.createElement("th");
+  th.scope = "row";
+  th.textContent = name;
+  tr.appendChild(th);
+  cells.forEach((text, i) => {
+    const td = document.createElement("td");
+    td.textContent = text;
+    if (i === highlightIndex) td.className = "your-value";
+    tr.appendChild(td);
+  });
+  tbody.appendChild(tr);
+}
 
-    const th = document.createElement("th");
-    th.scope = "row";
-    th.textContent = hero.name;
-    tr.appendChild(th);
+function renderHipfireTable() {
+  const base = HIP_GAMES[hipBase.value];
+  const sensBase = Math.max(Number(hipSens.value) || 0, 0);
+  const dpi = Math.max(Number(hipDpi.value) || 0, 0);
+  const tBase = base.t();
 
-    // Angular magnification of the scope relative to the current hipfire FOV.
-    const zoom = Math.tan((f1 / 2) * DEG) / Math.tan((hero.fov2 / 2) * DEG);
+  hipBody.innerHTML = "";
+  for (const [key, game] of Object.entries(HIP_GAMES)) {
+    const t = game.t();
+    const sens = sensBase * (base.yaw / game.yaw) * (t / tBase);
+    const sensCm = sensBase * (base.yaw / game.yaw); // FOV-blind cm/360 match
+    const fov = (2 * Math.atan(t)) / DEG;
+    const cm = sens > 0 && dpi > 0 ? (360 * 2.54) / (game.yaw * sens * dpi) : NaN;
 
-    const cells = [
-      fmt(sensTangent(f1, hero.fov2)) + "%",
-      fmt(sensAt(f1, hero.fov2, p)) + "%",
-      fmt(sensLinear(f1, hero.fov2)) + "%",
-      zoom.toFixed(2) + "×",
-      `${hero.fov2}°`,
-    ];
-    cells.forEach((text, i) => {
-      const td = document.createElement("td");
-      td.textContent = text;
-      if (i === 1) td.className = "your-value";
-      tr.appendChild(td);
-    });
+    // eDPI of the value you'd actually enter (the sens rounded to 3 decimals)
+    const edpi = sens > 0 && dpi > 0 ? Number(sens.toFixed(3)) * dpi : NaN;
+    const [lo, hi] = game.proEdpi;
+    const check = !Number.isFinite(edpi) ? "" :
+      edpi < lo ? " ✗ below" : edpi > hi ? " ✗ above" : " ✓";
 
-    tableBody.appendChild(tr);
+    renderRow(hipBody, game.label + (key === hipBase.value ? " (base)" : ""), [
+      sens.toFixed(3),
+      sensCm.toFixed(3),
+      Number.isFinite(edpi) ? String(Math.round(edpi)) : "—",
+      `≈${lo}–${hi}${check}`,
+      fmt(fov) + "°",
+      Number.isFinite(cm) ? cm.toFixed(1) + " cm" : "—",
+    ], 0);
   }
 }
 
-// aria-live announcement (polite): a short summary, not the whole table.
-// Only called from the slider handlers so page load stays silent.
-function announceUpdate() {
-  statusEl.textContent =
-    `Table updated for ${fovSlider.value}° hipfire FOV at ${mdSlider.value}% monitor distance.`;
+function announceHipfireUpdate() {
+  hipStatus.textContent =
+    `Table updated: base ${HIP_GAMES[hipBase.value].label} at sensitivity ${hipSens.value}.`;
 }
+
+for (const el of [hipBase, hipSens, hipDpi]) {
+  el.addEventListener("input", () => {
+    renderHipfireTable();
+    announceHipfireUpdate();
+  });
+}
+hipOwFov.addEventListener("input", () => {
+  hipOwFovOut.textContent = hipOwFov.value;
+  renderHipfireTable();
+  announceHipfireUpdate();
+});
+hipApexFov.addEventListener("input", () => {
+  hipApexFovOut.textContent = hipApexFov.value;
+  renderHipfireTable();
+  announceHipfireUpdate();
+});
 
 /* ------------------------------- charts --------------------------------- */
 
@@ -152,16 +191,13 @@ function curveData(f1, f2) {
   return pValues.map((p) => ({ x: p * 100, y: sensAt(f1, f2, p) }));
 }
 
-/** Build (once) the overview chart. */
+/** Build (once) the overview chart, fixed at the default 103 FOV. */
 function buildCharts() {
   const theme = chartTheme();
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   Chart.defaults.animation = reducedMotion ? false : { duration: 400 };
   Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
 
-  // The chart is intentionally static at the default FOV (the slider only
-  // drives the calculator table). Don't read the slider here: browsers can
-  // restore a moved slider position across reloads.
   const f1 = 103;
 
   /* ---- overview: all heroes' curves ---- */
@@ -216,18 +252,6 @@ function buildHiddenTable() {
 
 /* ---------------------------- wire it all up ----------------------------- */
 
-fovSlider.addEventListener("input", () => {
-  fovValue.textContent = fovSlider.value;
-  renderTable();
-  announceUpdate();
-});
-
-mdSlider.addEventListener("input", () => {
-  mdValue.textContent = mdSlider.value;
-  renderTable(); // monitor distance affects only the calculator, not the chart
-  announceUpdate();
-});
-
 // Rebuild chart theme colors when the OS color scheme flips.
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
   const theme = chartTheme();
@@ -246,16 +270,16 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () 
 });
 
 // The default table state is baked into the HTML (no layout shift, works
-// without JS). Re-render once in case the browser restored slider positions.
-renderTable();
+// without JS). Re-render once in case the browser restored input values.
+renderHipfireTable();
 
 // Chart.js is loaded with `defer` before this script, so it's available here;
-// guard anyway in case the CDN is blocked — calculator still works without it.
+// guard anyway in case the CDN is blocked — the page still works without it.
 if (typeof Chart !== "undefined") {
   buildCharts();
 } else {
-  document.getElementById("monitor-distance").insertAdjacentHTML(
+  document.getElementById("why-0").insertAdjacentHTML(
     "beforeend",
-    '<p class="fineprint">Chart could not load (Chart.js CDN unavailable). The calculator below still works.</p>'
+    '<p class="fineprint">Chart could not load (Chart.js CDN unavailable). The rest of the page still works.</p>'
   );
 }
