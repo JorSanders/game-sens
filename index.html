@@ -118,8 +118,8 @@
         </thead>
         <tbody>
           <tr><th scope="row">Sensitivity: Aim</th><td class="your-value">0.215</td></tr>
-          <tr><th scope="row">Scoped Sensitivity Multiplier (exact for Operator, first zoom)</th><td class="your-value">0.771640</td></tr>
-          <tr><th scope="row">ADS Sensitivity Multiplier (exact for Vandal, Phantom, Bulldog)</th><td class="your-value">0.912233</td></tr>
+          <tr><th scope="row">Scoped Sensitivity Multiplier (exact for Operator, first zoom)</th><td class="your-value">0.747462</td></tr>
+          <tr><th scope="row">ADS Sensitivity Multiplier (exact for Vandal, Phantom, Bulldog)</th><td class="your-value">0.870439</td></tr>
         </tbody>
       </table>
     </div>
@@ -572,25 +572,27 @@
           </tr>
         </thead>
         <tbody>
-          <tr><th scope="row">Stinger</th><td>ADS</td><td>0.941815</td><td>1.15×</td><td>95.10°</td></tr>
-          <tr><th scope="row">Spectre</th><td>ADS</td><td>0.941815</td><td>1.15×</td><td>95.10°</td></tr>
-          <tr><th scope="row">Bulldog</th><td>ADS</td><td class="your-value">0.912233</td><td>1.25×</td><td>90.33°</td></tr>
-          <tr><th scope="row">Guardian</th><td>ADS</td><td>0.859045</td><td>1.5×</td><td>79.93°</td></tr>
-          <tr><th scope="row">Phantom</th><td>ADS</td><td class="your-value">0.912233</td><td>1.25×</td><td>90.33°</td></tr>
-          <tr><th scope="row">Vandal</th><td>ADS</td><td class="your-value">0.912233</td><td>1.25×</td><td>90.33°</td></tr>
-          <tr><th scope="row">Ares</th><td>ADS</td><td>0.941815</td><td>1.15×</td><td>95.10°</td></tr>
-          <tr><th scope="row">Odin</th><td>ADS</td><td>0.941815</td><td>1.15×</td><td>95.10°</td></tr>
-          <tr><th scope="row">Marshal</th><td>Scoped</td><td>0.744730</td><td>3.5×</td><td>39.52°</td></tr>
-          <tr><th scope="row">Outlaw</th><td>Scoped</td><td>0.744730</td><td>3.5×</td><td>39.52°</td></tr>
-          <tr><th scope="row">Operator, first zoom</th><td>Scoped</td><td class="your-value">0.771640</td><td>2.5×</td><td>53.39°</td></tr>
-          <tr><th scope="row">Operator, second zoom</th><td>Scoped</td><td>0.729794</td><td>5×</td><td>28.23°</td></tr>
+          <tr><th scope="row">Stinger</th><td>ADS</td><td>0.907836</td><td>1.15×</td><td>89.57°</td></tr>
+          <tr><th scope="row">Spectre</th><td>ADS</td><td>0.907836</td><td>1.15×</td><td>89.57°</td></tr>
+          <tr><th scope="row">Bulldog</th><td>ADS</td><td class="your-value">0.870439</td><td>1.25×</td><td>82.40°</td></tr>
+          <tr><th scope="row">Guardian</th><td>ADS</td><td>0.814932</td><td>1.5×</td><td>68.67°</td></tr>
+          <tr><th scope="row">Phantom</th><td>ADS</td><td class="your-value">0.870439</td><td>1.25×</td><td>82.40°</td></tr>
+          <tr><th scope="row">Vandal</th><td>ADS</td><td class="your-value">0.870439</td><td>1.25×</td><td>82.40°</td></tr>
+          <tr><th scope="row">Ares</th><td>ADS</td><td>0.907836</td><td>1.15×</td><td>89.57°</td></tr>
+          <tr><th scope="row">Odin</th><td>ADS</td><td>0.907836</td><td>1.15×</td><td>89.57°</td></tr>
+          <tr><th scope="row">Marshal</th><td>Scoped</td><td>0.731117</td><td>3.5×</td><td>29.43°</td></tr>
+          <tr><th scope="row">Outlaw</th><td>Scoped</td><td>0.731117</td><td>3.5×</td><td>29.43°</td></tr>
+          <tr><th scope="row">Operator, first zoom</th><td>Scoped</td><td class="your-value">0.747462</td><td>2.5×</td><td>41.20°</td></tr>
+          <tr><th scope="row">Operator, second zoom</th><td>Scoped</td><td>0.722776</td><td>5×</td><td>20.60°</td></tr>
         </tbody>
       </table>
     </div>
 
     <p class="fineprint">
-      Scoped FOVs are derived from Riot's published zoom magnifications, read as
-      optical (tangent) magnifications of the locked 103° FOV. Sources:
+      Scoped FOVs are the locked 103° divided by Riot's zoom number: the
+      magnification is a straight FOV ratio, so 2.5× means 103 / 2.5 = 41.2°.
+      That's the FOV aim trainers use to replicate the Operator, and it's what
+      every sensitivity calculator I checked agrees on. Sources:
     </p>
     <ul class="fineprint">
       <li><a href="https://www.mouse-sensitivity.com/forums/topic/7527-csgo-to-valorant-sens/" rel="noopener">mouse-sensitivity.com (Valorant 1.0 = MDV 177.78%)</a></li>
