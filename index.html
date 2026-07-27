@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>1:1 Aim: one sensitivity across Overwatch, CS2, Valorant &amp; Apex</title>
+  <title>1:1 Aim: one sensitivity across Overwatch, CS2, Valorant, Apex &amp; Marvel Rivals</title>
   <meta name="description" content="How I got 1:1 aim across every game I play, with any weapon or zoom: the settings, what 1:1 actually means, the math, and per-game zoom values.">
   <link rel="canonical" href="https://game-sens.jor.dev/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
-  <meta property="og:title" content="1:1 Aim: one sensitivity across Overwatch, CS2, Valorant &amp; Apex">
+  <meta property="og:title" content="1:1 Aim: one sensitivity across Overwatch, CS2, Valorant, Apex &amp; Marvel Rivals">
   <meta property="og:description" content="1:1 aim across every game, weapon, and zoom: the settings, what 1:1 actually means, and the math behind it.">
   <meta property="og:url" content="https://game-sens.jor.dev/">
   <meta property="og:image" content="https://game-sens.jor.dev/favicon.svg">
 
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="1:1 Aim: one sensitivity across Overwatch, CS2, Valorant &amp; Apex">
+  <meta name="twitter:title" content="1:1 Aim: one sensitivity across Overwatch, CS2, Valorant, Apex &amp; Marvel Rivals">
   <meta name="twitter:description" content="1:1 aim across every game, weapon, and zoom: the settings, what 1:1 actually means, and the math behind it.">
   <meta name="twitter:image" content="https://game-sens.jor.dev/favicon.svg">
 
@@ -28,11 +28,11 @@
   {
     "@context": "https://schema.org",
     "@type": "TechArticle",
-    "headline": "1:1 Aim: one sensitivity across Overwatch, CS2, Valorant, and Apex Legends",
+    "headline": "1:1 Aim: one sensitivity across Overwatch, CS2, Valorant, Apex Legends, and Marvel Rivals",
     "description": "How to get 1:1 aim across games, weapons, and zooms: mouse movement maps to degrees, the three interpretations of 1:1, the tangent math, per-game yaw values, and crosshair-exact zoom values for every game.",
     "author": { "@type": "Person", "name": "game-sens" },
     "mainEntityOfPage": "https://game-sens.jor.dev/",
-    "about": ["Overwatch", "CS2", "Valorant", "Apex Legends", "mouse sensitivity", "field of view", "ADS sensitivity", "eDPI"]
+    "about": ["Overwatch", "CS2", "Valorant", "Apex Legends", "Marvel Rivals", "mouse sensitivity", "field of view", "ADS sensitivity", "eDPI"]
   }
   </script>
 </head>
@@ -80,10 +80,10 @@
         </thead>
         <tbody>
           <tr><th scope="row">Sensitivity</th><td class="your-value">2.28</td></tr>
-          <tr><th scope="row">Zoomed sens: Ana &amp; Widowmaker</th><td class="your-value">37.89%</td></tr>
-          <tr><th scope="row">Zoomed sens: Ashe &amp; Cassidy</th><td class="your-value">51.66%</td></tr>
-          <tr><th scope="row">Zoomed sens: Emre</th><td class="your-value">54.98%</td></tr>
-          <tr><th scope="row">Zoomed sens: Freja</th><td class="your-value">62.48%</td></tr>
+          <tr><th scope="row">Zoomed sens: Ana &amp; Widowmaker</th><td class="your-value">37.89</td></tr>
+          <tr><th scope="row">Zoomed sens: Ashe &amp; Cassidy</th><td class="your-value">51.47</td></tr>
+          <tr><th scope="row">Zoomed sens: Emre</th><td class="your-value">54.69</td></tr>
+          <tr><th scope="row">Zoomed sens: Freja</th><td class="your-value">62.50</td></tr>
         </tbody>
       </table>
     </div>
@@ -135,8 +135,26 @@
           </tr>
         </thead>
         <tbody>
-          <tr><th scope="row">Mouse Sensitivity (100 FOV)</th><td class="your-value">0.865</td></tr>
+          <tr><th scope="row">Field of View (FOV)</th><td class="your-value">100</td></tr>
+          <tr><th scope="row">Mouse Sensitivity</th><td class="your-value">0.865</td></tr>
           <tr><th scope="row">ADS Mouse Sensitivity Multiplier (and every per-optic slider)</th><td class="your-value">1.0 (default)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Marvel Rivals</h3>
+    <div class="table-wrap">
+      <table id="settings-rivals">
+        <caption>The FOV is fixed, and the game already scales ADS at the crosshair.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Setting</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Mouse Sensitivity</th><td class="your-value">0.686</td></tr>
+          <tr><th scope="row">ADS Sensitivity Multiplier</th><td class="your-value">1.0 (default)</td></tr>
         </tbody>
       </table>
     </div>
@@ -144,7 +162,8 @@
     <p class="fineprint">
       Per-weapon details and sources: <a href="#zoom-overwatch">Overwatch</a>,
       <a href="#zoom-cs2">CS2</a>, <a href="#zoom-valorant">Valorant</a>,
-      <a href="#zoom-apex">Apex Legends</a>.
+      <a href="#zoom-apex">Apex Legends</a>,
+      <a href="#zoom-marvel-rivals">Marvel Rivals</a>.
     </p>
   </section>
 
@@ -171,6 +190,7 @@
           <option value="cs2">CS2</option>
           <option value="valorant">Valorant</option>
           <option value="apex">Apex Legends</option>
+          <option value="rivals">Marvel Rivals</option>
         </select>
       </div>
 
@@ -228,6 +248,7 @@
           <tr><th scope="row">CS2</th><td class="your-value">0.725</td><td>0.684</td><td>1160</td><td class="range-ok">✓ upper end of ≈600–1200</td><td>106.26°</td><td>35.8 cm</td></tr>
           <tr><th scope="row">Valorant</th><td class="your-value">0.215</td><td>0.215</td><td>344</td><td class="range-ok">✓ upper end of ≈200–400</td><td>103.00°</td><td>38.0 cm</td></tr>
           <tr><th scope="row">Apex Legends</th><td class="your-value">0.865</td><td>0.684</td><td>1384</td><td class="range-ok">✓ upper end of ≈600–1600</td><td>115.63°</td><td>30.0 cm</td></tr>
+          <tr><th scope="row">Marvel Rivals</th><td class="your-value">0.686</td><td>0.862</td><td>1098</td><td class="range-ok">✓ lower end of ≈1000–2000</td><td>90.00°</td><td>47.7 cm</td></tr>
         </tbody>
       </table>
     </div>
@@ -279,9 +300,10 @@
     <p>
       Zooming reduces your FOV: you see fewer degrees, so the same mouse movement
       (= degrees) covers more of your screen. The same happens between games with
-      different hipfire FOVs: Overwatch and Valorant run 103°, CS2 runs 106.26°, and
-      Apex at the 100 setting runs 115.63° (all 16:9). Any conversion that ignores
-      FOV, like plain cm/360, gives you a different on-screen result in every game.
+      different hipfire FOVs: Overwatch and Valorant run 103°, CS2 runs 106.26°,
+      Apex at the 100 setting runs 115.63°, and Marvel Rivals is fixed at roughly
+      90° (all 16:9). Any conversion that ignores FOV, like plain cm/360, gives you
+      a different on-screen result in every game.
     </p>
   </section>
 
@@ -412,12 +434,17 @@
           <tr><th scope="row">CS2</th><td class="your-value">0.022°</td></tr>
           <tr><th scope="row">Valorant</th><td class="your-value">0.07°</td></tr>
           <tr><th scope="row">Apex Legends</th><td class="your-value">0.022°</td></tr>
+          <tr><th scope="row">Marvel Rivals</th><td class="your-value">0.017453°</td></tr>
         </tbody>
       </table>
     </div>
     <p class="fineprint">
       Community-established constants, as used by e.g.
       <a href="https://www.mouse-sensitivity.com/" rel="noopener">mouse-sensitivity.com</a>.
+      Heads up: some converters list Marvel Rivals with the standard Unreal 0.022
+      yaw, but measurements point to pi/180 (0.017453), as
+      <a href="https://ultimatemove.eu/en/sensitivity-calculator-converter/" rel="noopener">ultimatemove.eu</a>
+      documents.
     </p>
   </section>
 
@@ -450,19 +477,24 @@
           </tr>
         </thead>
         <tbody>
-          <tr><th scope="row">Ana</th><td class="your-value">37.89%</td><td>2.64×</td><td>50.94°</td></tr>
-          <tr><th scope="row">Widowmaker</th><td class="your-value">37.89%</td><td>2.64×</td><td>50.94°</td></tr>
-          <tr><th scope="row">Ashe</th><td class="your-value">51.66%</td><td>1.94×</td><td>66°</td></tr>
-          <tr><th scope="row">Cassidy</th><td class="your-value">51.66%</td><td>1.94×</td><td>66°</td></tr>
-          <tr><th scope="row">Emre</th><td class="your-value">54.98%</td><td>1.82×</td><td>69.3°</td></tr>
-          <tr><th scope="row">Freja</th><td class="your-value">62.48%</td><td>1.60×</td><td>76.3°</td></tr>
+          <tr><th scope="row">Ana</th><td class="your-value">37.89</td><td>2.64×</td><td>50.94°</td></tr>
+          <tr><th scope="row">Widowmaker</th><td class="your-value">37.89</td><td>2.64×</td><td>50.94°</td></tr>
+          <tr><th scope="row">Ashe</th><td class="your-value">51.47</td><td>1.94×</td><td>65.81°</td></tr>
+          <tr><th scope="row">Cassidy</th><td class="your-value">51.47</td><td>1.94×</td><td>65.81°</td></tr>
+          <tr><th scope="row">Emre</th><td class="your-value">54.69</td><td>1.83×</td><td>69.02°</td></tr>
+          <tr><th scope="row">Freja</th><td class="your-value">62.50</td><td>1.60×</td><td>76.31°</td></tr>
         </tbody>
       </table>
     </div>
 
     <p class="fineprint">
-      No official Blizzard source exists; the scoped FOVs are community-measured
-      (16:9):
+      No official Blizzard source exists; these are the community-measured values,
+      with the scoped FOVs back-solved from them (16:9). You'll sometimes see
+      slightly different numbers (like 51.66 for Ashe): those come from re-deriving
+      the value from a rounded FOV like 66°, so I stick to the measured ones. Emre's
+      is the least settled: the only public measurement gives 54.69, while 55.08
+      also circulates (from a method that varies with aspect ratio, so it isn't a
+      crosshair match). The spread is under half a percent, too small to feel.
     </p>
     <ul class="fineprint">
       <li><a href="https://us.forums.blizzard.com/en/overwatch/t/scoped-unscoped-11-is-4946-not-3789-on-anawidow/795597" rel="noopener">Blizzard forums (FOV 50.94, 37.89%)</a></li>
@@ -574,6 +606,12 @@
       and scale linearly with your FOV setting, so the table shows the effective
       zoom at 100 FOV.
     </p>
+    <p>
+      One gotcha when comparing FOV numbers: Apex's FOV setting is 4:3 based, while
+      Overwatch and Valorant count theirs in 16:9. So 103 in Apex is not 103 in
+      Overwatch: Apex at 100 is really 115.63° on a 16:9 monitor, and to match
+      Overwatch's 103° you'd set Apex to about 86.6.
+    </p>
 
     <div class="table-wrap">
       <table id="apex-table">
@@ -583,19 +621,18 @@
             <th scope="col">Optic</th>
             <th scope="col">0% value</th>
             <th scope="col">Zoom</th>
-            <th scope="col">ADS FOV (4:3)</th>
             <th scope="col">ADS FOV (16:9)</th>
           </tr>
         </thead>
         <tbody>
-          <tr><th scope="row">Iron sights</th><td class="your-value">1.0</td><td>1.46×</td><td>78.57°</td><td>94.97°</td></tr>
-          <tr><th scope="row">1x</th><td class="your-value">1.0</td><td>1.28×</td><td>85.71°</td><td>102.10°</td></tr>
-          <tr><th scope="row">2x</th><td class="your-value">1.0</td><td>2.28×</td><td>55.13°</td><td>69.68°</td></tr>
-          <tr><th scope="row">3x</th><td class="your-value">1.0</td><td>3.51×</td><td>37.54°</td><td>48.75°</td></tr>
-          <tr><th scope="row">4x</th><td class="your-value">1.0</td><td>4.72×</td><td>28.37°</td><td>37.25°</td></tr>
-          <tr><th scope="row">6x</th><td class="your-value">1.0</td><td>7.11×</td><td>19.02°</td><td>25.18°</td></tr>
-          <tr><th scope="row">8x</th><td class="your-value">1.0</td><td>9.51×</td><td>14.29°</td><td>18.98°</td></tr>
-          <tr><th scope="row">10x</th><td class="your-value">1.0</td><td>11.89×</td><td>11.44°</td><td>15.22°</td></tr>
+          <tr><th scope="row">Iron sights</th><td class="your-value">1.0</td><td>1.46×</td><td>94.97°</td></tr>
+          <tr><th scope="row">1x</th><td class="your-value">1.0</td><td>1.28×</td><td>102.10°</td></tr>
+          <tr><th scope="row">2x</th><td class="your-value">1.0</td><td>2.28×</td><td>69.68°</td></tr>
+          <tr><th scope="row">3x</th><td class="your-value">1.0</td><td>3.51×</td><td>48.75°</td></tr>
+          <tr><th scope="row">4x</th><td class="your-value">1.0</td><td>4.72×</td><td>37.25°</td></tr>
+          <tr><th scope="row">6x</th><td class="your-value">1.0</td><td>7.11×</td><td>25.18°</td></tr>
+          <tr><th scope="row">8x</th><td class="your-value">1.0</td><td>9.51×</td><td>18.98°</td></tr>
+          <tr><th scope="row">10x</th><td class="your-value">1.0</td><td>11.89×</td><td>15.22°</td></tr>
         </tbody>
       </table>
     </div>
@@ -605,6 +642,32 @@
       <li><a href="https://github.com/CafeFPS/r5_flowstate/tree/r5_flowstate/weapons" rel="noopener">Apex weapon configs via R5 (per-optic zoom_fov, "2x @ 70" annotations)</a></li>
       <li><a href="https://steamcommunity.com/app/824270/discussions/0/1778262124956492263/" rel="noopener">KovaaK's forums, Drimzi (Apex ADS scales by focal length, 0% by default)</a></li>
       <li><a href="https://github.com/Wanty5883/Titanfall2/blob/master/modding/weapon-config-info/weapon-fov-modding.md" rel="noopener">Titanfall 2 modding docs (ADS FOV scales with the base FOV setting)</a></li>
+    </ul>
+  </section>
+
+  <!-- ============================= ZOOM VALUES: MARVEL RIVALS ============================= -->
+  <section id="zoom-marvel-rivals" aria-labelledby="zoom-marvel-rivals-h">
+    <h2 id="zoom-marvel-rivals-h">Zoom values: Marvel Rivals</h2>
+    <p>
+      Good news: like Apex, Marvel Rivals scales ADS sensitivity at the crosshair
+      (0%) natively, so the default ADS Sensitivity Multiplier of 1.0 is already
+      1:1. Black Widow's scope is the only real zoom. Iron Man's Armor Overdrive,
+      The Punisher's turret and Hela's ultimate don't change your FOV, so they just
+      use your hipfire sens.
+    </p>
+    <p>
+      Two caveats. NetEase doesn't publish the FOV and there is no FOV setting:
+      community measurements point to roughly 90° at 16:9, which is what I use in
+      the <a href="#calculator">calculator</a>, but you'll also see 103 claimed. And
+      it's a third-person game, so 1:1 here means camera rotation, with some
+      third-person quirks around the crosshair that no setting can fully fix.
+    </p>
+
+    <p class="fineprint">Sources:</p>
+    <ul class="fineprint">
+      <li><a href="https://www.mouse-sensitivity.com/forums/topic/9462-marvel-rivals/" rel="noopener">mouse-sensitivity.com forums, DPI Wizard (ADS scales at 0% monitor distance; abilities without FOV change use hipfire sens)</a></li>
+      <li><a href="https://ultimatemove.eu/en/sensitivity-calculator-converter/" rel="noopener">ultimatemove.eu (measured yaw pi/180 = 0.017453, not the often-listed 0.022)</a></li>
+      <li><a href="https://steamcommunity.com/app/714010/discussions/0/599660817248481200/" rel="noopener">Aimlabs Steam discussion (FOV ~90 horizontal, community-measured)</a></li>
     </ul>
   </section>
 

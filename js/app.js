@@ -16,10 +16,10 @@
 const HEROES = [
   { name: "Ana",        fov2: 50.94 },
   { name: "Widowmaker", fov2: 50.94 },
-  { name: "Ashe",       fov2: 66 },
-  { name: "Cassidy",    fov2: 66 },
-  { name: "Emre",       fov2: 69.3 },
-  { name: "Freja",      fov2: 76.3 },
+  { name: "Ashe",       fov2: 65.81 },
+  { name: "Cassidy",    fov2: 65.81 },
+  { name: "Emre",       fov2: 69.02 },
+  { name: "Freja",      fov2: 76.31 },
 ];
 
 /* Heroes sharing the same scoped FOV have identical curves, so charts show
@@ -87,6 +87,9 @@ const HIP_GAMES = {
   cs2:       { label: "CS2",          yaw: 0.022,  proEdpi: [600, 1200],  t: () => (hipCs2Aspect.value === "4:3 stretched" ? 1 : 4 / 3) },
   valorant:  { label: "Valorant",     yaw: 0.07,   proEdpi: [200, 400],   t: () => Math.tan((103 / 2) * DEG) },
   apex:      { label: "Apex Legends", yaw: 0.022,  proEdpi: [600, 1600],  t: () => (4 / 3) * Math.tan((Number(hipApexFov.value) / 2) * DEG) },
+  /* Fixed FOV, community-measured ~90 deg 16:9 -> tan(45 deg) = 1.
+     Yaw is the measured pi/180, not the often-quoted Unreal 0.022. */
+  rivals:    { label: "Marvel Rivals", yaw: 0.017453, proEdpi: [1000, 2000], t: () => 1 },
 };
 
 function renderRow(tbody, name, cells, highlightIndex) {

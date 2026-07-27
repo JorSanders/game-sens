@@ -2,7 +2,7 @@
 
 Live at **https://game-sens.jor.dev/**
 
-A static site about achieving 1:1 aim across Overwatch, CS2, Valorant, and Apex Legends —
+A static site about achieving 1:1 aim across Overwatch, CS2, Valorant, Apex Legends, and Marvel Rivals —
 any weapon, any zoom. Crosshair-matched (0% monitor distance) settings up front, then the
 explanation: what 1:1 actually means, which interpretation to pick, how FOV and the
 flat-screen tangent stretch come into play, per-game yaw values, eDPI, and per-game zoom
