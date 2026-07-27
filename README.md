@@ -1,16 +1,20 @@
-# Overwatch 1:1 Scoped Sens
+# 1:1 Aim
 
 Live at **https://game-sens.jor.dev/**
 
-A static site with per-hero 1:1 values for Overwatch's **Relative Aim Sensitivity While
-Zoomed**, an interactive calculator, and an explanation of why no single value can be 1:1
-everywhere on a flat monitor (the "monitor distance" spectrum).
+A static site about achieving 1:1 aim across Overwatch, CS2, Valorant, and Apex Legends —
+any weapon, any zoom. Crosshair-matched (0% monitor distance) settings up front, then the
+explanation: what 1:1 actually means, which interpretation to pick, how FOV and the
+flat-screen tangent stretch come into play, per-game yaw values, eDPI, and per-game zoom
+value tables with sources.
 
-- **Recommended values** — crosshair-matched (0% monitor distance) values at 103 FOV.
-- **Interactive calculator** — hipfire FOV (80–103) and monitor distance (0–100%) sliders,
-  live per-hero results.
-- **Chart** — the exact-1:1 curve per scoped-FOV group (Chart.js from cdnjs).
-- **Write-up** — what 1:1 means, the flat-screen tangent stretch, and the formulas.
+- **Settings** — per-game base sens + scoped values, ready to copy (1600 DPI, 16:9).
+- **Write-up** — what 1:1 means, which 1:1 to pick, FOV, the formulas, yaw, eDPI.
+- **Cross-game calculator** — enter any base game/sens/DPI, get 0% matches for every game
+  with a pro-eDPI sanity check.
+- **Chart** — the exact-1:1 curve per Overwatch scoped-FOV group (Chart.js from cdnjs).
+- **Zoom values** — per-game tables (Overwatch heroes, CS2 zoom levels, Valorant weapons,
+  Apex optics) with community sources.
 
 No build step. Vanilla HTML + CSS + JS with relative paths.
 

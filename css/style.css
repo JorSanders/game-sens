@@ -15,6 +15,8 @@
   --formula-bg: #e8f4f4;
   --focus: #0e918c;
   --table-stripe: #eef5f5;
+  --ok: #1a7f37;         /* green, 4.9:1 on white */
+  --bad: #b42318;        /* red, 6.3:1 on white */
   /* chart colors read by JS */
   --chart-grid: #d0e0e0;
   --chart-tick: #4c5560;
@@ -33,6 +35,8 @@
     --formula-bg: #1a2e30;
     --focus: #3dd6cf;
     --table-stripe: #162628;
+    --ok: #57d977;        /* green light, 9.4:1 on #182224 */
+    --bad: #ff8a80;       /* red light, 7.9:1 on #182224 */
     --chart-grid: #2a3e40;
     --chart-tick: #b0b8c1;
   }
@@ -144,6 +148,8 @@ th, td {
 thead th { background: var(--formula-bg); }
 tbody tr:nth-child(even) { background: var(--table-stripe); }
 td.your-value { font-weight: 700; color: var(--accent2); }
+td.range-ok { color: var(--ok); white-space: nowrap; }
+td.range-bad { color: var(--bad); font-weight: 700; white-space: nowrap; }
 
 .fineprint { color: var(--text-muted); font-size: 0.9rem; }
 

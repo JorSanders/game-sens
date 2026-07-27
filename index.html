@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>1:1 Scoped Sens — Overwatch, CS2, Valorant, Apex</title>
-  <meta name="description" content="One aim across every game: crosshair-exact (0% monitor distance) sensitivity for every game, weapon, and zoom — the settings, the math, and per-game tables.">
+  <title>1:1 Aim: one sensitivity across Overwatch, CS2, Valorant &amp; Apex</title>
+  <meta name="description" content="How I got 1:1 aim across every game I play, with any weapon or zoom: the settings, what 1:1 actually means, the math, and per-game zoom values.">
   <link rel="canonical" href="https://game-sens.jor.dev/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
-  <meta property="og:title" content="1:1 Scoped Sens — Overwatch, CS2, Valorant, Apex">
-  <meta property="og:description" content="One aim across every game: 1:1 at 0% monitor distance for every game, weapon, and zoom — and why that beats matching cm/360.">
+  <meta property="og:title" content="1:1 Aim: one sensitivity across Overwatch, CS2, Valorant &amp; Apex">
+  <meta property="og:description" content="1:1 aim across every game, weapon, and zoom: the settings, what 1:1 actually means, and the math behind it.">
   <meta property="og:url" content="https://game-sens.jor.dev/">
   <meta property="og:image" content="https://game-sens.jor.dev/favicon.svg">
 
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="1:1 Scoped Sens — Overwatch, CS2, Valorant, Apex">
-  <meta name="twitter:description" content="One aim across every game: crosshair-exact sensitivity for every game, weapon, and zoom.">
+  <meta name="twitter:title" content="1:1 Aim: one sensitivity across Overwatch, CS2, Valorant &amp; Apex">
+  <meta name="twitter:description" content="1:1 aim across every game, weapon, and zoom: the settings, what 1:1 actually means, and the math behind it.">
   <meta name="twitter:image" content="https://game-sens.jor.dev/favicon.svg">
 
   <link rel="stylesheet" href="css/style.css">
@@ -28,88 +28,50 @@
   {
     "@context": "https://schema.org",
     "@type": "TechArticle",
-    "headline": "One aim across every game: 1:1 at 0% monitor distance for Overwatch, CS2, Valorant, and Apex",
-    "description": "Why no single scoped sensitivity value is 1:1 everywhere on a flat monitor, why 0% monitor distance beats matching cm/360 or the screen edge, and crosshair-exact values for every game.",
+    "headline": "1:1 Aim: one sensitivity across Overwatch, CS2, Valorant, and Apex Legends",
+    "description": "How to get 1:1 aim across games, weapons, and zooms: mouse movement maps to degrees, the three interpretations of 1:1, the tangent math, per-game yaw values, and crosshair-exact zoom values for every game.",
     "author": { "@type": "Person", "name": "game-sens" },
     "mainEntityOfPage": "https://game-sens.jor.dev/",
-    "about": ["Overwatch", "CS2", "Valorant", "Apex Legends", "mouse sensitivity", "field of view", "ADS sensitivity"]
+    "about": ["Overwatch", "CS2", "Valorant", "Apex Legends", "mouse sensitivity", "field of view", "ADS sensitivity", "eDPI"]
   }
   </script>
 </head>
 <body>
 
 <header>
-  <h1>1:1 Scoped Sens</h1>
-  <p class="tagline">One aim across every game: 1:1 at 0% monitor distance on any game, any weapon, any zoom.</p>
+  <h1>1:1 Aim</h1>
+  <p class="tagline">I achieved 1:1 aim across all the games I play, any weapon, any zoom.</p>
   <nav aria-label="Page sections">
     <ul>
-      <li><a href="#settings">The settings</a></li>
-      <li><a href="#approach">The approach</a></li>
-      <li><a href="#calculator-hipfire">Cross-game</a></li>
-      <li><a href="#why-0">Why 0%</a></li>
-      <li><a href="#formulas">Formulas</a></li>
-      <li><a href="#overwatch">Overwatch</a></li>
-      <li><a href="#cs2">CS2</a></li>
-      <li><a href="#valorant">Valorant</a></li>
-      <li><a href="#apex">Apex</a></li>
+      <li><a href="#my-recommendations">My recommendations</a></li>
+      <li><a href="#calculator">Calculator</a></li>
+      <li><a href="#what-is-1-1">What is 1:1</a></li>
+      <li><a href="#which-1-1">Which 1:1</a></li>
+      <li><a href="#fov">FOV</a></li>
+      <li><a href="#math">The math</a></li>
+      <li><a href="#yaw">Yaw</a></li>
+      <li><a href="#edpi">eDPI</a></li>
+      <li><a href="#zoom-overwatch">Zoom values</a></li>
+      <li><a href="#disclaimer">Disclaimer</a></li>
     </ul>
   </nav>
 </header>
 
 <main>
 
-  <!-- ============================= THE SETTINGS ============================= -->
-  <section id="settings" aria-labelledby="settings-h">
-    <h2 id="settings-h">The settings</h2>
+  <!-- ============================= SETTINGS ============================= -->
+  <section id="my-recommendations" aria-labelledby="my-recommendations-h">
+    <h2 id="my-recommendations-h">My recommendations</h2>
     <p>
-      The full set, ready to copy: <strong>1600 DPI</strong>, 16:9, and the values
-      below. Why they work is explained right after.
+      This is my full setup: <strong>1600&nbsp;DPI</strong> and 16:9. The base sens
+      is 1:1 across games and the scoped values are 1:1 with hipfire. On a different
+      sens or DPI? Use the <a href="#calculator">calculator</a>.
     </p>
 
-    <h3>Hipfire</h3>
+    <h3>Overwatch</h3>
     <div class="table-wrap">
-      <table id="settings-table">
-        <thead>
-          <tr>
-            <th scope="col">Game</th>
-            <th scope="col">Sensitivity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">Overwatch</th><td class="your-value">2.28</td></tr>
-          <tr><th scope="row">CS2</th><td class="your-value">0.725</td></tr>
-          <tr><th scope="row">Valorant</th><td class="your-value">0.215</td></tr>
-          <tr><th scope="row">Apex Legends (100 FOV)</th><td class="your-value">0.865</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Scoped</h3>
-
-    <h4>Overwatch — Relative Aim Sensitivity While Zoomed, per hero (103 FOV)</h4>
-    <div class="table-wrap">
-      <table id="rec-table">
-        <thead>
-          <tr>
-            <th scope="col">Hero</th>
-            <th scope="col">Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">Ana</th><td class="your-value">37.89%</td></tr>
-          <tr><th scope="row">Widowmaker</th><td class="your-value">37.89%</td></tr>
-          <tr><th scope="row">Ashe</th><td class="your-value">51.66%</td></tr>
-          <tr><th scope="row">Cassidy</th><td class="your-value">51.66%</td></tr>
-          <tr><th scope="row">Emre</th><td class="your-value">54.98%</td></tr>
-          <tr><th scope="row">Freja</th><td class="your-value">62.48%</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h4>CS2 — one console variable for every weapon</h4>
-    <div class="table-wrap">
-      <table id="rec-table-cs2">
-        <caption>Exact for the AWP's and SSG&nbsp;08's first zoom; the rest land within about 4%.</caption>
+      <table id="settings-overwatch">
+        <caption>103 FOV.</caption>
         <thead>
           <tr>
             <th scope="col">Setting</th>
@@ -117,32 +79,37 @@
           </tr>
         </thead>
         <tbody>
+          <tr><th scope="row">Sensitivity</th><td class="your-value">2.28</td></tr>
+          <tr><th scope="row">Zoomed sens: Ana &amp; Widowmaker</th><td class="your-value">37.89%</td></tr>
+          <tr><th scope="row">Zoomed sens: Ashe &amp; Cassidy</th><td class="your-value">51.66%</td></tr>
+          <tr><th scope="row">Zoomed sens: Emre</th><td class="your-value">54.98%</td></tr>
+          <tr><th scope="row">Zoomed sens: Freja</th><td class="your-value">62.48%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>CS2</h3>
+    <div class="table-wrap">
+      <table id="settings-cs2">
+        <caption>Exact for the AWP's and SSG&nbsp;08's first zoom, the rest lands within ~4%.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Setting</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Sensitivity</th><td class="your-value">0.725</td></tr>
           <tr><th scope="row"><code>zoom_sensitivity_ratio</code></th><td class="your-value">0.818933</td></tr>
+          <tr><th scope="row">Aspect ratio</th><td class="your-value">16:9</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h4>Valorant — one multiplier for every weapon</h4>
+    <h3>Valorant</h3>
     <div class="table-wrap">
-      <table id="rec-table-valorant">
-        <caption>Set it for the weapon you rely on most.</caption>
-        <thead>
-          <tr>
-            <th scope="col">If you mostly play</th>
-            <th scope="col">Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">Rifles (Vandal, Phantom, Bulldog)</th><td class="your-value">0.912233</td></tr>
-          <tr><th scope="row">Operator, first zoom</th><td class="your-value">0.771640</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h4>Apex Legends — nothing to change</h4>
-    <div class="table-wrap">
-      <table id="rec-table-apex">
-        <caption>Apex scales ADS sensitivity by the focal-length (tangent) ratio, so the default is already 1:1 at the crosshair for every optic, at any FOV.</caption>
+      <table id="settings-valorant">
+        <caption>ADS covers the rifles and SMGs, Scoped covers the snipers.</caption>
         <thead>
           <tr>
             <th scope="col">Setting</th>
@@ -150,82 +117,50 @@
           </tr>
         </thead>
         <tbody>
+          <tr><th scope="row">Sensitivity: Aim</th><td class="your-value">0.215</td></tr>
+          <tr><th scope="row">ADS Sensitivity Multiplier (exact for Vandal, Phantom, Bulldog)</th><td class="your-value">0.912233</td></tr>
+          <tr><th scope="row">Scoped Sensitivity Multiplier (exact for Operator, first zoom)</th><td class="your-value">0.771640</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Apex Legends</h3>
+    <div class="table-wrap">
+      <table id="settings-apex">
+        <caption>Apex's default ADS scaling is already 1:1 at the crosshair.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Setting</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Mouse Sensitivity (100 FOV)</th><td class="your-value">0.865</td></tr>
           <tr><th scope="row">ADS Mouse Sensitivity Multiplier (and every per-optic slider)</th><td class="your-value">1.0 (default)</td></tr>
         </tbody>
       </table>
     </div>
 
     <p class="fineprint">
-      Per-weapon details and sources: <a href="#overwatch">Overwatch</a>,
-      <a href="#cs2">CS2</a>, <a href="#valorant">Valorant</a>,
-      <a href="#apex">Apex Legends</a>. Different sens, DPI, or FOV? Use the
-      <a href="#calculator-hipfire">calculator</a>.
+      Per-weapon details and sources: <a href="#zoom-overwatch">Overwatch</a>,
+      <a href="#zoom-cs2">CS2</a>, <a href="#zoom-valorant">Valorant</a>,
+      <a href="#zoom-apex">Apex Legends</a>.
     </p>
   </section>
 
-  <!-- ============================= THE APPROACH ============================= -->
-  <section id="approach" aria-labelledby="approach-h">
-    <h2 id="approach-h">The approach</h2>
+  <!-- ============================= CALCULATOR ==================================== -->
+  <section id="calculator" aria-labelledby="calculator-h">
+    <h2 id="calculator-h">Calculator</h2>
     <p>
-      I want one aim across everything I play — hipfire and scoped, in Overwatch,
-      CS2, Valorant, and Apex. The rule that makes that possible: match everything
-      at <strong>0% monitor distance</strong>, i.e. 1:1 at the crosshair, where
-      aiming actually happens. Scoped sens is matched to hipfire within each game,
-      and hipfire is matched across games the same way.
-    </p>
-    <p>
-      One sanity check before trusting any conversion: the resulting eDPI
-      (sens&nbsp;×&nbsp;DPI) has to land inside the range most pros run in that
-      game. My base is Overwatch, 2.28 at 1600&nbsp;DPI — converted at 0%, every
-      game does:
-    </p>
-
-    <div class="table-wrap">
-      <table id="approach-table">
-        <caption>eDPI of the settings above vs what pros run.</caption>
-        <thead>
-          <tr>
-            <th scope="col">Game</th>
-            <th scope="col">eDPI</th>
-            <th scope="col">Typical pro eDPI</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">Overwatch (base)</th><td class="your-value">3648</td><td>≈3200–5600</td></tr>
-          <tr><th scope="row">CS2</th><td class="your-value">1160</td><td>≈600–1200</td></tr>
-          <tr><th scope="row">Valorant</th><td class="your-value">344</td><td>≈200–400</td></tr>
-          <tr><th scope="row">Apex Legends</th><td class="your-value">1384</td><td>≈600–1600</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p>
-      That's no coincidence: pros in wide-FOV games naturally run higher eDPI, which
-      is exactly what a 0% conversion predicts. Keeping cm/360 instead would put me
-      below the Apex pro average — the two methods disagree by 27% there. The
-      <a href="#why-0">next sections</a> unpack the math.
-    </p>
-
-    <p class="fineprint">
-      Pro eDPI ranges: community settings trackers, e.g.
-      <a href="https://prosettings.net/" rel="noopener">prosettings.net</a> and
-      <a href="https://proconfig.net/" rel="noopener">proconfig.net</a>.
-    </p>
-  </section>
-
-  <!-- ============================= CROSS-GAME HIPFIRE ============================= -->
-  <section id="calculator-hipfire" aria-labelledby="calculator-hipfire-h">
-    <h2 id="calculator-hipfire-h">Cross-game hipfire calculator</h2>
-    <p>
-      Not on my sens? Enter your own base and read off your set. The conversion
-      keeps the on-screen movement per cm of mouse identical at the crosshair
-      (0% monitor distance), at the cost of slightly different cm/360 per game:
+      If I want the same sensitivity in every game, it also has to land on a
+      <em>usable</em> value in every game. So I checked each conversion against the
+      <a href="#edpi">eDPI</a> range pros of that game typically play in. Not a hard restriction, but a
+      good starting point. You don't have to copy my FOVs either: pick your own
+      Overwatch and Apex FOV, and for CS2 your aspect ratio. Enter your base game,
+      sens, and DPI:
     </p>
     <p class="formula" aria-label="sens 2 equals sens 1, times yaw 1 over yaw 2, times tangent of F2 over 2, divided by tangent of F1 over 2">
       sens₂&nbsp;=&nbsp;sens₁&nbsp;×&nbsp;(yaw₁&nbsp;/&nbsp;yaw₂)&nbsp;×&nbsp;tan(F₂⁄2)&nbsp;/&nbsp;tan(F₁⁄2)
-    </p>
-    <p>
-      where yaw is each game's degrees of rotation per mouse count per sensitivity
-      unit, and F is the actual 16:9 hipfire FOV.
     </p>
 
     <form class="calc-controls" aria-describedby="hip-status">
@@ -245,7 +180,7 @@
       </div>
 
       <div class="control">
-        <label for="hip-dpi">Mouse DPI (eDPI and cm/360 columns)</label>
+        <label for="hip-dpi">Mouse DPI</label>
         <input type="number" id="hip-dpi" min="100" step="50" value="1600" inputmode="numeric">
       </div>
 
@@ -257,7 +192,17 @@
       <div class="control">
         <label for="hip-apex-fov">Apex FOV: <output id="hip-apex-fov-value" for="hip-apex-fov">100</output></label>
         <input type="range" id="hip-apex-fov" min="70" max="110" step="1" value="100">
-        <p class="help">CS2 (106.26°) and Valorant (103°) have fixed FOVs.</p>
+      </div>
+
+      <div class="control">
+        <label for="hip-cs2-aspect">CS2 aspect ratio</label>
+        <select id="hip-cs2-aspect">
+          <option value="16:9" selected>16:9</option>
+          <option value="4:3 stretched">4:3 stretched</option>
+          <option value="4:3 black bars">4:3 black bars</option>
+        </select>
+        <p class="help">Stretched speeds up horizontal aim, so it needs a lower sens to stay
+        1:1 at the crosshair. Black bars aims like 16:9. Valorant's FOV is fixed at 103°.</p>
       </div>
     </form>
 
@@ -265,61 +210,94 @@
 
     <div class="table-wrap">
       <table id="hipfire-table">
-        <caption>Hipfire sensitivity per game, 1:1 at the crosshair with your base game (16:9). The same-cm/360 column shows the usual FOV-blind conversion for comparison; the pro-range check uses the 0% value.</caption>
+        <caption>Hipfire sens per game, 1:1 at the crosshair with your base; the same-cm/360 column shows the FOV-blind conversion for comparison.</caption>
         <thead>
           <tr>
             <th scope="col">Game</th>
             <th scope="col">Sensitivity (0% match)</th>
             <th scope="col">Sensitivity (same cm/360)</th>
             <th scope="col">eDPI</th>
-            <th scope="col">Typical pro eDPI</th>
-            <th scope="col">Hipfire FOV (16:9)</th>
+            <th scope="col">Pro eDPI check</th>
+            <th scope="col">Hipfire FOV</th>
             <th scope="col">cm/360 of the 0% match</th>
           </tr>
         </thead>
         <!-- default state (Overwatch base, sens 2.28, 1600 DPI, OW 103, Apex 100); js/app.js re-renders on input -->
         <tbody>
-          <tr><th scope="row">Overwatch (base)</th><td class="your-value">2.280</td><td>2.280</td><td>3648</td><td>≈3200–5600 ✓</td><td>103.00°</td><td>38.0 cm</td></tr>
-          <tr><th scope="row">CS2</th><td class="your-value">0.725</td><td>0.684</td><td>1160</td><td>≈600–1200 ✓</td><td>106.26°</td><td>35.8 cm</td></tr>
-          <tr><th scope="row">Valorant</th><td class="your-value">0.215</td><td>0.215</td><td>344</td><td>≈200–400 ✓</td><td>103.00°</td><td>38.0 cm</td></tr>
-          <tr><th scope="row">Apex Legends</th><td class="your-value">0.865</td><td>0.684</td><td>1384</td><td>≈600–1600 ✓</td><td>115.63°</td><td>30.0 cm</td></tr>
+          <tr><th scope="row">Overwatch (base)</th><td class="your-value">2.280</td><td>2.280</td><td>3648</td><td class="range-ok">✓ lower end of ≈3200–5600</td><td>103.00°</td><td>38.0 cm</td></tr>
+          <tr><th scope="row">CS2</th><td class="your-value">0.725</td><td>0.684</td><td>1160</td><td class="range-ok">✓ upper end of ≈600–1200</td><td>106.26°</td><td>35.8 cm</td></tr>
+          <tr><th scope="row">Valorant</th><td class="your-value">0.215</td><td>0.215</td><td>344</td><td class="range-ok">✓ upper end of ≈200–400</td><td>103.00°</td><td>38.0 cm</td></tr>
+          <tr><th scope="row">Apex Legends</th><td class="your-value">0.865</td><td>0.684</td><td>1384</td><td class="range-ok">✓ upper end of ≈600–1600</td><td>115.63°</td><td>30.0 cm</td></tr>
         </tbody>
       </table>
     </div>
 
     <p class="fineprint">
-      Yaw per mouse count per sensitivity unit: Overwatch 0.0066°, CS2 and Apex 0.022°,
-      Valorant 0.07° — the community-established engine constants used by every
-      sensitivity converter, e.g.
-      <a href="https://www.mouse-sensitivity.com/" rel="noopener">mouse-sensitivity.com</a>.
-      Sanity check: Valorant lands on the same cm/360 as Overwatch because both run 103° FOV.
+      Pros in wide-FOV games run higher eDPI, which is exactly what a 0% conversion
+      predicts and cm/360 misses (they disagree by 27% on Apex). Pro ranges:
+      <a href="https://prosettings.net/" rel="noopener">prosettings.net</a>,
+      <a href="https://proconfig.net/" rel="noopener">proconfig.net</a>.
     </p>
   </section>
 
-  <!-- ============================= WHY 0% ============================= -->
-  <section id="why-0" aria-labelledby="why-0-h">
-    <h2 id="why-0-h">Why 0%, and not cm/360 or the screen edge</h2>
+  <!-- ============================= WHAT IS 1:1 AIM ============================= -->
+  <section id="what-is-1-1" aria-labelledby="what-is-1-1-h">
+    <h2 id="what-is-1-1-h">What is 1:1 aim?</h2>
     <p>
-      Scoping reduces your FOV, so the same mouse movement covers more screen
-      distance. Every game has a setting that compensates — Overwatch's per-hero
-      <strong>Relative Aim Sensitivity While Zoomed</strong>, CS2's
-      <code>zoom_sensitivity_ratio</code>, Valorant's scoped sensitivity multiplier,
-      Apex's per-optic ADS multipliers. At the right value, you move your mouse the
-      same distance to reach a target on screen whether you're scoped or not.
-      That's “1:1”. The catch: <em>which</em> target?
+      1:1 aim isn't as intuitive as I thought. My assumption was: a target is X cm
+      from my crosshair, so I need to move my mouse X cm. Turns out that's not true.
+      <strong>Moving your mouse X centimeters turns your crosshair X degrees</strong>,
+      and degrees don't map evenly onto a flat screen (<a href="#math">the math</a>).
+      So there's no clean 1:1 translation, just three common interpretations:
     </p>
+    <ul>
+      <li><strong>Same cm per 360</strong>: same mouse distance for a full turn.</li>
+      <li><strong>Same cm to the screen edge</strong>: a.k.a. <em>100% monitor distance</em>.</li>
+      <li><strong>Same cm near the crosshair</strong>: a.k.a. <em>0% monitor distance</em>.</li>
+    </ul>
     <p>
-      Your mouse maps centimeters to <strong>degrees of rotation</strong>, a fixed number of
-      degrees per cm, regardless of FOV. But your flat monitor maps degrees to
-      <strong>pixels</strong> through a tangent:
+      They give genuinely different numbers, and every converter or in-game default
+      silently picks one.
+    </p>
+  </section>
+
+  <!-- ============================= WHICH 1:1 ============================= -->
+  <section id="which-1-1" aria-labelledby="which-1-1-h">
+    <h2 id="which-1-1-h">Which 1:1 should you pick?</h2>
+    <p>
+      My conclusion, and what seems to be the common consensus: go for
+      <strong>consistency near your crosshair</strong> (0% monitor distance). Even on
+      large flicks good players finish with a micro-flick onto the target, so the
+      flick that decides the fight happens near your crosshair. Every value on this
+      page is a 0% match.
+    </p>
+  </section>
+
+  <!-- ============================= FOV ============================= -->
+  <section id="fov" aria-labelledby="fov-h">
+    <h2 id="fov-h">How does FOV come into play?</h2>
+    <p>
+      Zooming reduces your FOV: you see fewer degrees, so the same mouse movement
+      (= degrees) covers more of your screen. The same happens between games with
+      different hipfire FOVs: Overwatch and Valorant run 103°, CS2 runs 106.26°, and
+      Apex at the 100 setting runs 115.63° (all 16:9). Any conversion that ignores
+      FOV, like plain cm/360, gives you a different on-screen result in every game.
+    </p>
+  </section>
+
+  <!-- ============================= THE MATH ============================= -->
+  <section id="math" aria-labelledby="math-h">
+    <h2 id="math-h">How does the math work?</h2>
+    <p>
+      Your mouse turns centimeters into <strong>degrees of rotation</strong>. Your
+      flat monitor turns degrees into <strong>pixels</strong> through a tangent:
     </p>
     <p class="formula" aria-label="screen position equals viewing distance times the tangent of the angle">
       screen&nbsp;position&nbsp;=&nbsp;distance&nbsp;×&nbsp;tan(angle)
     </p>
     <p>
-      The tangent grows faster and faster as the angle increases, so the screen edges are
-      “stretched”: one degree of rotation near the crosshair moves the image only a few
-      pixels, while one degree near the edge moves it many. Equal angles, unequal pixels.
+      The tangent grows faster as the angle increases, so one degree of rotation
+      covers few pixels near the crosshair and many near the edge:
     </p>
 
     <figure class="diagram-figure">
@@ -373,47 +351,35 @@
         <text x="490" y="38"  class="d-label">4th 10° ≈ 105 px…</text>
       </svg>
       <figcaption>
-        Each ray is one more 10° turn of your camera, and every 10° costs the same mouse
-        movement. Near the crosshair, 10° covers about 70 px of screen; three steps later the
-        same 10° covers 105 px. Pixels-per-degree is lowest at the crosshair and grows toward
-        the edge.
+        Every 10° costs the same mouse movement, but covers more screen toward the edge.
       </figcaption>
     </figure>
 
+    <h3>The formulas</h3>
     <p>
-      Because of that stretch, there are three defensible ways to “match” two views
-      (scoped vs hipfire, or game vs game) — and they give different numbers:
+      <var>F₁</var> = hipfire FOV, <var>F₂</var> = scoped FOV, <var>p</var> =
+      monitor-distance fraction (0…1), both FOVs in the same aspect ratio.
     </p>
-    <ul>
-      <li>
-        <strong>Same cm/360</strong> — the same physical mouse distance for a full turn.
-        Preserves full-turn flicks and general movement, but ignores FOV entirely: the
-        identical wrist flick covers different <em>screen</em> distance in each view.
-      </li>
-      <li>
-        <strong>100% monitor distance (linear FOV ratio)</strong> — the same mouse distance
-        to reach the screen edge. This is what CS2's and Valorant's defaults do. But the
-        edge is the most stretched, least relevant part of the screen — matching there
-        makes everything <em>near the crosshair</em> run fast.
-      </li>
-      <li>
-        <strong>0% monitor distance (tangent ratio)</strong> — the same on-screen speed at
-        the crosshair. Micro-adjustments, tracking, and duels all happen at the crosshair,
-        so this is the match point that makes scoped aim <em>feel</em> like hipfire. It's
-        also the one Apex ships as its default.
-      </li>
-    </ul>
+
+    <h4>Same cm to the screen edge = 100% monitor distance (linear / FOV-ratio)</h4>
+    <p class="formula">sens% = (F₂ / F₁) × 100</p>
+
+    <h4>Same cm at the crosshair = 0% monitor distance (tangent, “true 1:1”)</h4>
+    <p class="formula">sens% = ( tan(F₂⁄2) / tan(F₁⁄2) ) × 100</p>
+
+    <h4>General: exact 1:1 for a target at monitor distance p</h4>
+    <p class="formula">sens%(p) = ( atan( p·tan(F₂⁄2) ) / atan( p·tan(F₁⁄2) ) ) × 100</p>
     <p>
-      No single value is 1:1 everywhere on a flat screen — you pick a point. I pick
-      the crosshair.
+      As <var>p</var> → 0 this reduces to the tangent method; at <var>p</var> = 1
+      it equals the linear method. Everything on this page is computed from these
+      three lines.
     </p>
 
     <div class="chart-block">
-      <h3>Exact 1:1 at every point on screen</h3>
+      <h3>Worked example: Overwatch</h3>
       <p>
-        So the exact 1:1 value depends on where the target is on screen.
-        Left = crosshair, right = screen edge. Overwatch's heroes shown; the
-        shape is the same in every game.
+        The exact 1:1 value depends on where the target is on screen: left =
+        crosshair, right = screen edge. The shape is the same in every game.
       </p>
       <div class="chart-frame">
         <canvas id="chart-overview" role="img"
@@ -421,44 +387,60 @@
       </div>
       <div class="visually-hidden" id="chart-overview-table"></div>
     </div>
-
   </section>
 
-  <!-- ============================= FORMULAS ============================= -->
-  <section id="formulas" aria-labelledby="formulas-h">
-    <h2 id="formulas-h">The formulas</h2>
+  <!-- ============================= YAW ============================= -->
+  <section id="yaw" aria-labelledby="yaw-h">
+    <h2 id="yaw-h">Per-game yaw value</h2>
     <p>
-      Let <var>F₁</var> = hipfire horizontal FOV, <var>F₂</var> = scoped horizontal FOV,
-      and <var>p</var> = monitor-distance fraction (0…1), both FOVs in the same aspect ratio.
+      Each game multiplies your mouse input by an engine constant called
+      <strong>yaw</strong>: degrees of rotation per mouse count, per sensitivity
+      unit. It's why "sens 2" means something completely different in Overwatch
+      than in Valorant.
     </p>
-
-    <h3>Linear / FOV-ratio = 100% monitor distance</h3>
-    <p class="formula">sens% = (F₂ / F₁) × 100</p>
-
-    <h3>Tangent (“true 1:1”) = 0% monitor distance</h3>
-    <p class="formula">sens% = ( tan(F₂⁄2) / tan(F₁⁄2) ) × 100</p>
-
-    <h3>General: exact 1:1 for a target at monitor distance p</h3>
-    <p class="formula">sens%(p) = ( atan( p·tan(F₂⁄2) ) / atan( p·tan(F₁⁄2) ) ) × 100</p>
-    <p>
-      As <var>p</var> → 0 this reduces to the tangent method; at <var>p</var> = 1 it equals the
-      linear method. Every table and chart on this page is computed from these three
-      lines (the cross-game calculator adds only each game's yaw constant).
+    <div class="table-wrap">
+      <table id="yaw-table">
+        <caption>Yaw per game: degrees per mouse count per sensitivity unit.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Game</th>
+            <th scope="col">Yaw</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Overwatch</th><td class="your-value">0.0066°</td></tr>
+          <tr><th scope="row">CS2</th><td class="your-value">0.022°</td></tr>
+          <tr><th scope="row">Valorant</th><td class="your-value">0.07°</td></tr>
+          <tr><th scope="row">Apex Legends</th><td class="your-value">0.022°</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fineprint">
+      Community-established constants, as used by e.g.
+      <a href="https://www.mouse-sensitivity.com/" rel="noopener">mouse-sensitivity.com</a>.
     </p>
   </section>
 
-  <!-- ============================= OVERWATCH ============================= -->
-  <section id="overwatch" aria-labelledby="overwatch-h">
-    <h2 id="overwatch-h">Overwatch</h2>
+  <!-- ============================= EDPI ============================= -->
+  <section id="edpi" aria-labelledby="edpi-h">
+    <h2 id="edpi-h">eDPI</h2>
     <p>
-      <strong>Relative Aim Sensitivity While Zoomed</strong> is set per hero. The
-      values below are exact at the crosshair on the default (and competitive
-      standard) 103 FOV.
+      <strong>eDPI</strong> = in-game sensitivity × mouse DPI. It lets players with
+      different DPI compare how fast they actually turn, but only within one game,
+      since each game applies its own <a href="#yaw">yaw</a>.
+    </p>
+  </section>
+
+  <!-- ============================= ZOOM VALUES: OVERWATCH ============================= -->
+  <section id="zoom-overwatch" aria-labelledby="zoom-overwatch-h">
+    <h2 id="zoom-overwatch-h">Zoom values: Overwatch</h2>
+    <p>
+      <strong>Relative Aim Sensitivity While Zoomed</strong>, per hero, exact at the
+      crosshair on 103 FOV.
     </p>
 
     <div class="table-wrap">
       <table id="ow-table">
-        <caption>0% monitor distance Relative Aim Sensitivity While Zoomed per hero, 103 FOV.</caption>
         <thead>
           <tr>
             <th scope="col">Hero</th>
@@ -479,10 +461,8 @@
     </div>
 
     <p class="fineprint">
-      There is no official Blizzard source for the scope multipliers or scoped FOVs.
-      The community reverse-engineered them by measuring cm/360 scoped vs unscoped
-      and back-solving the FOV from the sensitivity formula.
-      Sources (16:9):
+      No official Blizzard source exists; the scoped FOVs are community-measured
+      (16:9):
     </p>
     <ul class="fineprint">
       <li><a href="https://us.forums.blizzard.com/en/overwatch/t/scoped-unscoped-11-is-4946-not-3789-on-anawidow/795597" rel="noopener">Blizzard forums (FOV 50.94, 37.89%)</a></li>
@@ -493,26 +473,18 @@
     </ul>
   </section>
 
-  <!-- ============================= CS2 ============================= -->
-  <section id="cs2" aria-labelledby="cs2-h">
-    <h2 id="cs2-h">CS2</h2>
+  <!-- ============================= ZOOM VALUES: CS2 ============================= -->
+  <section id="zoom-cs2" aria-labelledby="zoom-cs2-h">
+    <h2 id="zoom-cs2-h">Zoom values: CS2</h2>
     <p>
       The default <code>zoom_sensitivity_ratio 1</code> matches at the edge of a 4:3
-      screen, which on a 16:9 monitor (106.26° hipfire FOV) is 75% monitor distance.
-      A 0% (crosshair) match instead needs
-    </p>
-    <p class="formula" aria-label="zoom sensitivity ratio equals F1 over F2, times tangent of F2 over 2, divided by tangent of F1 over 2">
-      zoom_sensitivity_ratio&nbsp;=&nbsp;(F1&nbsp;/&nbsp;F2)&nbsp;×&nbsp;tan(F2/2)&nbsp;/&nbsp;tan(F1/2)
-    </p>
-    <p>
-      with FOVs in 4:3 degrees (hipfire F1 = 90°). One console variable covers every
-      weapon and zoom level, so you pick which zoom to be exact for. The community
-      standard <strong>0.818933</strong> is exact for the first zoom of the AWP and
-      SSG&nbsp;08; the other zooms land within about 4% of it.
+      screen (75% monitor distance on a 16:9 monitor). One variable covers every
+      weapon; <strong>0.818933</strong> is exact for the first zoom of the AWP and
+      SSG&nbsp;08, the rest lands within ~4%.
     </p>
     <div class="table-wrap">
       <table id="cs2-table">
-        <caption>Exact 0% monitor distance zoom_sensitivity_ratio per CS2 zoom level.</caption>
+        <caption>Exact 0% zoom_sensitivity_ratio per zoom level.</caption>
         <thead>
           <tr>
             <th scope="col">Weapon / zoom</th>
@@ -532,10 +504,8 @@
     </div>
 
     <p class="fineprint">
-      The values follow from the general formula and the community-measured scoped FOVs;
-      Valve publishes neither. The zoom column is the tangent ratio of scoped to hipfire
-      FOV (the same convention as the Overwatch table and Riot's zoom numbers), and the
-      16:9 FOVs are the Hor+ equivalents of the 4:3 values. Sources:
+      Scoped FOVs are community-measured; Valve publishes neither them nor the formula.
+      Sources:
     </p>
     <ul class="fineprint">
       <li><a href="https://www.teamfortress.tv/35467/on-the-correct-value-of-zoom-sensitivity-ratio" rel="noopener">teamfortress.tv (derivation of the 0% formula)</a></li>
@@ -544,86 +514,70 @@
     </ul>
   </section>
 
-  <!-- ============================= VALORANT ============================= -->
-  <section id="valorant" aria-labelledby="valorant-h">
-    <h2 id="valorant-h">Valorant</h2>
+  <!-- ============================= ZOOM VALUES: VALORANT ============================= -->
+  <section id="zoom-valorant" aria-labelledby="zoom-valorant-h">
+    <h2 id="zoom-valorant-h">Zoom values: Valorant</h2>
     <p>
-      The scoped sensitivity multiplier default of 1.0 matches at the 16:9 screen
-      edge — 100% monitor distance — so scoped micro-adjustments near the crosshair
-      run faster than hipfire by default. One multiplier covers everything from
-      rifle ADS to the Operator's second zoom. Riot publishes each weapon's zoom
-      magnification; reading those as true optical magnifications of the locked
-      103° hipfire FOV gives the values below.
+      Valorant has two settings: the <strong>ADS Sensitivity Multiplier</strong> for
+      weapons that aim down sights, and the <strong>Scoped Sensitivity
+      Multiplier</strong> for the snipers. Both default to 1.0, which matches at the
+      16:9 screen edge (100% monitor distance). Each multiplier still covers several
+      zoom tiers, so set it for the zoom you rely on most; the rest lands within a
+      few percent.
     </p>
     <div class="table-wrap">
       <table id="valorant-table">
-        <caption>Exact 0% monitor distance scoped sensitivity multiplier per Valorant weapon (103° hipfire FOV, 16:9).</caption>
+        <caption>Exact 0% multiplier per weapon (103° hipfire FOV, 16:9).</caption>
         <thead>
           <tr>
             <th scope="col">Weapon / zoom</th>
+            <th scope="col">Setting</th>
             <th scope="col">0% value</th>
             <th scope="col">Zoom</th>
             <th scope="col">Scoped FOV</th>
           </tr>
         </thead>
         <tbody>
-          <tr><th scope="row">Stinger</th><td>0.941815</td><td>1.15×</td><td>95.10°</td></tr>
-          <tr><th scope="row">Spectre</th><td>0.941815</td><td>1.15×</td><td>95.10°</td></tr>
-          <tr><th scope="row">Bulldog</th><td class="your-value">0.912233</td><td>1.25×</td><td>90.33°</td></tr>
-          <tr><th scope="row">Guardian</th><td>0.859045</td><td>1.5×</td><td>79.93°</td></tr>
-          <tr><th scope="row">Phantom</th><td class="your-value">0.912233</td><td>1.25×</td><td>90.33°</td></tr>
-          <tr><th scope="row">Vandal</th><td class="your-value">0.912233</td><td>1.25×</td><td>90.33°</td></tr>
-          <tr><th scope="row">Marshal</th><td>0.744730</td><td>3.5×</td><td>39.52°</td></tr>
-          <tr><th scope="row">Outlaw</th><td>0.744730</td><td>3.5×</td><td>39.52°</td></tr>
-          <tr><th scope="row">Operator, first zoom</th><td class="your-value">0.771640</td><td>2.5×</td><td>53.39°</td></tr>
-          <tr><th scope="row">Operator, second zoom</th><td>0.729794</td><td>5×</td><td>28.23°</td></tr>
-          <tr><th scope="row">Ares</th><td>0.941815</td><td>1.15×</td><td>95.10°</td></tr>
-          <tr><th scope="row">Odin</th><td>0.941815</td><td>1.15×</td><td>95.10°</td></tr>
+          <tr><th scope="row">Stinger</th><td>ADS</td><td>0.941815</td><td>1.15×</td><td>95.10°</td></tr>
+          <tr><th scope="row">Spectre</th><td>ADS</td><td>0.941815</td><td>1.15×</td><td>95.10°</td></tr>
+          <tr><th scope="row">Bulldog</th><td>ADS</td><td class="your-value">0.912233</td><td>1.25×</td><td>90.33°</td></tr>
+          <tr><th scope="row">Guardian</th><td>ADS</td><td>0.859045</td><td>1.5×</td><td>79.93°</td></tr>
+          <tr><th scope="row">Phantom</th><td>ADS</td><td class="your-value">0.912233</td><td>1.25×</td><td>90.33°</td></tr>
+          <tr><th scope="row">Vandal</th><td>ADS</td><td class="your-value">0.912233</td><td>1.25×</td><td>90.33°</td></tr>
+          <tr><th scope="row">Ares</th><td>ADS</td><td>0.941815</td><td>1.15×</td><td>95.10°</td></tr>
+          <tr><th scope="row">Odin</th><td>ADS</td><td>0.941815</td><td>1.15×</td><td>95.10°</td></tr>
+          <tr><th scope="row">Marshal</th><td>Scoped</td><td>0.744730</td><td>3.5×</td><td>39.52°</td></tr>
+          <tr><th scope="row">Outlaw</th><td>Scoped</td><td>0.744730</td><td>3.5×</td><td>39.52°</td></tr>
+          <tr><th scope="row">Operator, first zoom</th><td>Scoped</td><td class="your-value">0.771640</td><td>2.5×</td><td>53.39°</td></tr>
+          <tr><th scope="row">Operator, second zoom</th><td>Scoped</td><td>0.729794</td><td>5×</td><td>28.23°</td></tr>
         </tbody>
       </table>
     </div>
-    <p>
-      Sidearms and shotguns have no zoom, so the multiplier never applies to them.
-      Set the value for the zoom you rely on most: rifle players sit in the 1.25× tier,
-      Operator players on the first zoom. The other tiers then land within a few
-      percent, exactly like CS2's single console variable. Most pros leave the
-      default 1.0; those who deviate drift toward these values (0.9, 0.8).
-    </p>
 
     <p class="fineprint">
-      The scoped FOVs are derived, not measured: Riot publishes only the zoom
-      magnifications, and the table assumes they are true optical magnifications
-      (tangent ratios). Sources:
+      Scoped FOVs are derived from Riot's published zoom magnifications, read as
+      optical (tangent) magnifications of the locked 103° FOV. Sources:
     </p>
     <ul class="fineprint">
-      <li><a href="https://www.mouse-sensitivity.com/forums/topic/7527-csgo-to-valorant-sens/" rel="noopener">mouse-sensitivity.com (Valorant 1.0 = MDV 177.78%, CS 1.0 = MDV 133.33%)</a></li>
-      <li><a href="https://wiki.playvalorant.com/en-us/Weapons" rel="noopener">Official VALORANT Wiki (per-weapon zoom magnifications, on each weapon's page)</a></li>
-      <li><a href="https://proconfig.net/stats/valorant-scoped-sensitivity/" rel="noopener">proconfig.net (69% of pros run scoped sens 1.0; deviators pick 0.9 / 0.8)</a></li>
+      <li><a href="https://www.mouse-sensitivity.com/forums/topic/7527-csgo-to-valorant-sens/" rel="noopener">mouse-sensitivity.com (Valorant 1.0 = MDV 177.78%)</a></li>
+      <li><a href="https://wiki.playvalorant.com/en-us/Weapons" rel="noopener">Official VALORANT Wiki (per-weapon zoom magnifications)</a></li>
     </ul>
   </section>
 
-  <!-- ============================= APEX ============================= -->
-  <section id="apex" aria-labelledby="apex-h">
-    <h2 id="apex-h">Apex Legends</h2>
+  <!-- ============================= ZOOM VALUES: APEX ============================= -->
+  <section id="zoom-apex" aria-labelledby="zoom-apex-h">
+    <h2 id="zoom-apex-h">Zoom values: Apex Legends</h2>
     <p>
-      Apex is the odd one out: it scales ADS sensitivity by the focal-length
-      (tangent) ratio, so the default multiplier of 1.0 is already an exact 0%
-      monitor-distance match for every optic, at any FOV and aspect ratio. Leave
-      the ADS multiplier and every per-optic slider at 1.0 and you're done.
-    </p>
-    <p>
-      The optic FOVs come from the game files, tuned to exact magnifications at
-      70 FOV (the configs literally say <code>"38.5907" // 2x @ 70</code>). Raising
-      the FOV setting scales the ADS FOV linearly in degrees, but your screen maps
-      tangents, so the effective magnification grows with FOV — the table shows the
-      effective zoom at 100 FOV. Variable optics toggle between two tiers
-      (1x–2x, 2x–4x, 4x–8x, 4x–10x), each tier using its own in-game
-      per-optic slider.
+      Apex scales ADS sensitivity by the focal-length (tangent) ratio, so the
+      default 1.0 is already an exact 0% match for every optic, at any FOV. Leave
+      everything at 1.0. The optic FOVs are tuned to exact magnifications at 70 FOV
+      and scale linearly with your FOV setting, so the table shows the effective
+      zoom at 100 FOV.
     </p>
 
     <div class="table-wrap">
       <table id="apex-table">
-        <caption>Apex optic tiers at 100 FOV (16:9). The per-optic ADS multiplier stays 1.0 — the default is the 0% match at any FOV.</caption>
+        <caption>Apex optic tiers at 100 FOV (16:9).</caption>
         <thead>
           <tr>
             <th scope="col">Optic</th>
@@ -646,18 +600,40 @@
       </table>
     </div>
 
-    <p class="fineprint">
-      The optic FOVs are the <code>zoom_fov</code> values in the game's weapon
-      configs (iron sights: 55° for rifles, LMGs, marksman and snipers, 60° for
-      SMGs, pistols and shotguns — the same as 1x optics). ADS FOV scales
-      linearly with the FOV setting; the screen projection is Hor+ for 16:9.
-      Sources:
-    </p>
+    <p class="fineprint">Sources:</p>
     <ul class="fineprint">
       <li><a href="https://github.com/CafeFPS/r5_flowstate/tree/r5_flowstate/weapons" rel="noopener">Apex weapon configs via R5 (per-optic zoom_fov, "2x @ 70" annotations)</a></li>
-      <li><a href="https://steamcommunity.com/app/824270/discussions/0/1778262124956492263/" rel="noopener">KovaaK's forums, Drimzi (Apex ADS scales cm/rev by focal length — 0% by default)</a></li>
+      <li><a href="https://steamcommunity.com/app/824270/discussions/0/1778262124956492263/" rel="noopener">KovaaK's forums, Drimzi (Apex ADS scales by focal length, 0% by default)</a></li>
       <li><a href="https://github.com/Wanty5883/Titanfall2/blob/master/modding/weapon-config-info/weapon-fov-modding.md" rel="noopener">Titanfall 2 modding docs (ADS FOV scales with the base FOV setting)</a></li>
     </ul>
+  </section>
+
+  <!-- ============================= DISCLAIMER ============================= -->
+  <section id="disclaimer" aria-labelledby="disclaimer-h">
+    <h2 id="disclaimer-h">Disclaimer</h2>
+    <ul>
+      <li>
+        <strong>Aim isn't muscle memory, it's hand-eye coordination.</strong> The
+        brain re-calibrates to a changed input gain within a short practice session
+        (<a href="https://www.jneurosci.org/content/20/23/8916" rel="noopener">Krakauer
+        et&nbsp;al., <em>J.&nbsp;Neurosci.</em></a>,
+        <a href="https://en.wikipedia.org/wiki/Motor_adaptation" rel="noopener">motor
+        adaptation</a>). 1:1 removes re-adaptation overhead; it won't make or break
+        your aim.
+      </li>
+      <li>
+        <strong>Pros don't agree on any of this.</strong> Pro sens within one game
+        varies 3×+ (<a href="https://prosettings.net/" rel="noopener">prosettings.net</a>),
+        and ~69% of Valorant pros leave the scoped multiplier at 1.0
+        (<a href="https://proconfig.net/stats/valorant-scoped-sensitivity/" rel="noopener">proconfig.net</a>),
+        though the ones who deviate drift toward the 0.9/0.8 values on this page.
+      </li>
+    </ul>
+    <p class="fineprint">
+      All scoped FOVs and engine constants are community-derived (sources per
+      section). Overwatch, Counter-Strike, Valorant, and Apex Legends are trademarks
+      of their respective owners; this is an unofficial fan resource.
+    </p>
   </section>
 
 </main>

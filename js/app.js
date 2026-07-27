@@ -74,13 +74,17 @@ const hipOwFov      = document.getElementById("hip-ow-fov");
 const hipOwFovOut   = document.getElementById("hip-ow-fov-value");
 const hipApexFov    = document.getElementById("hip-apex-fov");
 const hipApexFovOut = document.getElementById("hip-apex-fov-value");
+const hipCs2Aspect  = document.getElementById("hip-cs2-aspect");
 const hipStatus     = document.getElementById("hip-status");
 const hipBody       = document.querySelector("#hipfire-table tbody");
 
 /* proEdpi = the eDPI band most pros run (sources in the approach section). */
 const HIP_GAMES = {
   overwatch: { label: "Overwatch",    yaw: 0.0066, proEdpi: [3200, 5600], t: () => Math.tan((Number(hipOwFov.value) / 2) * DEG) },
-  cs2:       { label: "CS2",          yaw: 0.022,  proEdpi: [600, 1200],  t: () => 4 / 3 },
+  /* 4:3 stretched renders a 90-degree (tan = 1) image across the full monitor
+     width, so horizontal on-screen speed at the crosshair scales by 4/3;
+     black bars keep the 16:9 focal length and aim identically to 16:9. */
+  cs2:       { label: "CS2",          yaw: 0.022,  proEdpi: [600, 1200],  t: () => (hipCs2Aspect.value === "4:3 stretched" ? 1 : 4 / 3) },
   valorant:  { label: "Valorant",     yaw: 0.07,   proEdpi: [200, 400],   t: () => Math.tan((103 / 2) * DEG) },
   apex:      { label: "Apex Legends", yaw: 0.022,  proEdpi: [600, 1600],  t: () => (4 / 3) * Math.tan((Number(hipApexFov.value) / 2) * DEG) },
 };
@@ -91,10 +95,15 @@ function renderRow(tbody, name, cells, highlightIndex) {
   th.scope = "row";
   th.textContent = name;
   tr.appendChild(th);
-  cells.forEach((text, i) => {
+  cells.forEach((cell, i) => {
     const td = document.createElement("td");
-    td.textContent = text;
-    if (i === highlightIndex) td.className = "your-value";
+    if (typeof cell === "object" && cell !== null) {
+      td.textContent = cell.text;
+      if (cell.className) td.className = cell.className;
+    } else {
+      td.textContent = cell;
+    }
+    if (i === highlightIndex) td.classList.add("your-value");
     tr.appendChild(td);
   });
   tbody.appendChild(tr);
@@ -117,40 +126,72 @@ function renderHipfireTable() {
     // eDPI of the value you'd actually enter (the sens rounded to 3 decimals)
     const edpi = sens > 0 && dpi > 0 ? Number(sens.toFixed(3)) * dpi : NaN;
     const [lo, hi] = game.proEdpi;
-    const check = !Number.isFinite(edpi) ? "" :
-      edpi < lo ? " ✗ below" : edpi > hi ? " ✗ above" : " ✓";
+    let proCell;
+    if (!Number.isFinite(edpi)) {
+      proCell = { text: `≈${lo}–${hi}` };
+    } else if (edpi < lo) {
+      proCell = { text: `✗ below ≈${lo}–${hi}`, className: "range-bad" };
+    } else if (edpi > hi) {
+      proCell = { text: `✗ above ≈${lo}–${hi}`, className: "range-bad" };
+    } else {
+      const pos = (edpi - lo) / (hi - lo);
+      const spot = pos < 1 / 3 ? "lower end" : pos < 2 / 3 ? "middle" : "upper end";
+      proCell = { text: `✓ ${spot} of ≈${lo}–${hi}`, className: "range-ok" };
+    }
 
     renderRow(hipBody, game.label + (key === hipBase.value ? " (base)" : ""), [
       sens.toFixed(3),
       sensCm.toFixed(3),
       Number.isFinite(edpi) ? String(Math.round(edpi)) : "—",
-      `≈${lo}–${hi}${check}`,
+      proCell,
       fmt(fov) + "°",
       Number.isFinite(cm) ? cm.toFixed(1) + " cm" : "—",
     ], 0);
   }
 }
 
-function announceHipfireUpdate() {
-  hipStatus.textContent =
-    `Table updated: base ${HIP_GAMES[hipBase.value].label} at sensitivity ${hipSens.value}.`;
+/* Announce what actually changed (also read by screen readers via aria-live). */
+function announceHipfireUpdate(change) {
+  hipStatus.textContent = `Table updated: ${change}.`;
 }
 
-for (const el of [hipBase, hipSens, hipDpi]) {
+/* Switching base game keeps the aim: the base sens is converted to the newly
+   selected game's equivalent 0% value (e.g. Overwatch 2.28 -> Valorant 0.215). */
+let prevBase = hipBase.value;
+hipBase.addEventListener("input", () => {
+  const oldGame = HIP_GAMES[prevBase];
+  const newGame = HIP_GAMES[hipBase.value];
+  const sens = Math.max(Number(hipSens.value) || 0, 0);
+  if (sens > 0 && prevBase !== hipBase.value) {
+    const converted = sens * (oldGame.yaw / newGame.yaw) * (newGame.t() / oldGame.t());
+    hipSens.value = String(Number(converted.toFixed(3)));
+  }
+  prevBase = hipBase.value;
+  renderHipfireTable();
+  announceHipfireUpdate(
+    `base switched to ${newGame.label}, sensitivity ${hipSens.value}`);
+});
+
+const INPUT_ANNOUNCEMENTS = [
+  [hipSens,      () => `base sensitivity ${hipSens.value}`],
+  [hipDpi,       () => `mouse DPI ${hipDpi.value}`],
+  [hipCs2Aspect, () => `CS2 aspect ratio ${hipCs2Aspect.value}`],
+];
+for (const [el, message] of INPUT_ANNOUNCEMENTS) {
   el.addEventListener("input", () => {
     renderHipfireTable();
-    announceHipfireUpdate();
+    announceHipfireUpdate(message());
   });
 }
 hipOwFov.addEventListener("input", () => {
   hipOwFovOut.textContent = hipOwFov.value;
   renderHipfireTable();
-  announceHipfireUpdate();
+  announceHipfireUpdate(`Overwatch FOV ${hipOwFov.value}°`);
 });
 hipApexFov.addEventListener("input", () => {
   hipApexFovOut.textContent = hipApexFov.value;
   renderHipfireTable();
-  announceHipfireUpdate();
+  announceHipfireUpdate(`Apex FOV ${hipApexFov.value}`);
 });
 
 /* ------------------------------- charts --------------------------------- */
@@ -278,7 +319,7 @@ renderHipfireTable();
 if (typeof Chart !== "undefined") {
   buildCharts();
 } else {
-  document.getElementById("why-0").insertAdjacentHTML(
+  document.getElementById("math").insertAdjacentHTML(
     "beforeend",
     '<p class="fineprint">Chart could not load (Chart.js CDN unavailable). The rest of the page still works.</p>'
   );
