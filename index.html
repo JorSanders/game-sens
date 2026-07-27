@@ -4,21 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>1:1 Aim: one sensitivity across Overwatch, CS2, Valorant, Apex &amp; Marvel Rivals</title>
-  <meta name="description" content="How I got 1:1 aim across every game I play, with any weapon or zoom: the settings, what 1:1 actually means, the math, and per-game zoom values.">
+  <meta name="description" content="How I got 1:1 aim across every game I play, with any weapon or zoom: my recommended settings, a cross-game calculator, the math, and per-game zoom values.">
   <link rel="canonical" href="https://game-sens.jor.dev/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:title" content="1:1 Aim: one sensitivity across Overwatch, CS2, Valorant, Apex &amp; Marvel Rivals">
-  <meta property="og:description" content="1:1 aim across every game, weapon, and zoom: the settings, what 1:1 actually means, and the math behind it.">
+  <meta property="og:description" content="1:1 aim across every game, weapon, and zoom: my recommended settings, a cross-game calculator, and the math behind it.">
   <meta property="og:url" content="https://game-sens.jor.dev/">
   <meta property="og:image" content="https://game-sens.jor.dev/favicon.svg">
 
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="1:1 Aim: one sensitivity across Overwatch, CS2, Valorant, Apex &amp; Marvel Rivals">
-  <meta name="twitter:description" content="1:1 aim across every game, weapon, and zoom: the settings, what 1:1 actually means, and the math behind it.">
+  <meta name="twitter:description" content="1:1 aim across every game, weapon, and zoom: my recommended settings, a cross-game calculator, and the math behind it.">
   <meta name="twitter:image" content="https://game-sens.jor.dev/favicon.svg">
 
   <link rel="stylesheet" href="css/style.css">
@@ -109,7 +109,7 @@
     <h3>Valorant</h3>
     <div class="table-wrap">
       <table id="settings-valorant">
-        <caption>ADS covers the rifles and SMGs, Scoped covers the snipers.</caption>
+        <caption>Scoped covers the snipers, ADS covers the rifles and SMGs.</caption>
         <thead>
           <tr>
             <th scope="col">Setting</th>
@@ -118,8 +118,8 @@
         </thead>
         <tbody>
           <tr><th scope="row">Sensitivity: Aim</th><td class="your-value">0.215</td></tr>
-          <tr><th scope="row">ADS Sensitivity Multiplier (exact for Vandal, Phantom, Bulldog)</th><td class="your-value">0.912233</td></tr>
           <tr><th scope="row">Scoped Sensitivity Multiplier (exact for Operator, first zoom)</th><td class="your-value">0.771640</td></tr>
+          <tr><th scope="row">ADS Sensitivity Multiplier (exact for Vandal, Phantom, Bulldog)</th><td class="your-value">0.912233</td></tr>
         </tbody>
       </table>
     </div>
@@ -176,7 +176,8 @@
       <a href="#edpi">eDPI</a> range pros of that game typically play in. Not a hard restriction, but a
       good starting point. You don't have to copy my FOVs either: pick your own
       Overwatch and Apex FOV, and for CS2 your aspect ratio. Enter your base game,
-      sens, and DPI:
+      sens, and DPI. The why behind this formula is explained in the rest of the
+      page:
     </p>
     <p class="formula" aria-label="sens 2 equals sens 1, times yaw 1 over yaw 2, times tangent of F2 over 2, divided by tangent of F1 over 2">
       sens₂&nbsp;=&nbsp;sens₁&nbsp;×&nbsp;(yaw₁&nbsp;/&nbsp;yaw₂)&nbsp;×&nbsp;tan(F₂⁄2)&nbsp;/&nbsp;tan(F₁⁄2)
@@ -222,7 +223,8 @@
           <option value="4:3 black bars">4:3 black bars</option>
         </select>
         <p class="help">Stretched speeds up horizontal aim, so it needs a lower sens to stay
-        1:1 at the crosshair. Black bars aims like 16:9. Valorant's FOV is fixed at 103°.</p>
+        1:1 at the crosshair. Black bars aims like 16:9. Valorant (103°) and
+        Marvel Rivals (~90°) have fixed FOVs.</p>
       </div>
     </form>
 
@@ -694,8 +696,8 @@
     </ul>
     <p class="fineprint">
       All scoped FOVs and engine constants are community-derived (sources per
-      section). Overwatch, Counter-Strike, Valorant, and Apex Legends are trademarks
-      of their respective owners; this is an unofficial fan resource.
+      section). Overwatch, Counter-Strike, Valorant, Apex Legends, and Marvel Rivals
+      are trademarks of their respective owners; this is an unofficial fan resource.
     </p>
   </section>
 

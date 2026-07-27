@@ -8,13 +8,13 @@ explanation: what 1:1 actually means, which interpretation to pick, how FOV and 
 flat-screen tangent stretch come into play, per-game yaw values, eDPI, and per-game zoom
 value tables with sources.
 
-- **Settings** — per-game base sens + scoped values, ready to copy (1600 DPI, 16:9).
+- **My recommendations** — per-game base sens + scoped values, ready to copy (1600 DPI, 16:9).
+- **Calculator** — enter any base game/sens/DPI (plus OW/Apex FOV and CS2 aspect ratio),
+  get 0% matches for every game with a pro-eDPI range check.
 - **Write-up** — what 1:1 means, which 1:1 to pick, FOV, the formulas, yaw, eDPI.
-- **Cross-game calculator** — enter any base game/sens/DPI, get 0% matches for every game
-  with a pro-eDPI sanity check.
 - **Chart** — the exact-1:1 curve per Overwatch scoped-FOV group (Chart.js from cdnjs).
 - **Zoom values** — per-game tables (Overwatch heroes, CS2 zoom levels, Valorant weapons,
-  Apex optics) with community sources.
+  Apex optics, Marvel Rivals) with community sources.
 
 No build step. Vanilla HTML + CSS + JS with relative paths.
 
@@ -51,5 +51,5 @@ fraction (0…1), angles in degrees:
 
 There is no official or datamined source for the scoped FOVs. All values are
 community-derived (reverse-engineered from cm/360 measurements, 16:9); sources are
-linked on the site. Overwatch is a trademark of Blizzard Entertainment; this is an
-unofficial fan resource.
+linked on the site. All game titles are trademarks of their respective owners; this is
+an unofficial fan resource.
