@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>1:1 Aim: one sensitivity across Overwatch, CS2, Valorant, Apex &amp; Marvel Rivals</title>
+  <title>1:1 Aim: one sensitivity across Overwatch, CS2, Valorant, Apex, Marvel Rivals &amp; Deadlock</title>
   <meta name="description" content="How I got 1:1 aim across every game I play, with any weapon or zoom: my recommended settings, a cross-game calculator, the math, and per-game zoom values.">
   <link rel="canonical" href="https://game-sens.jor.dev/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
-  <meta property="og:title" content="1:1 Aim: one sensitivity across Overwatch, CS2, Valorant, Apex &amp; Marvel Rivals">
+  <meta property="og:title" content="1:1 Aim: one sensitivity across Overwatch, CS2, Valorant, Apex, Marvel Rivals &amp; Deadlock">
   <meta property="og:description" content="1:1 aim across every game, weapon, and zoom: my recommended settings, a cross-game calculator, and the math behind it.">
   <meta property="og:url" content="https://game-sens.jor.dev/">
   <meta property="og:image" content="https://game-sens.jor.dev/favicon.svg">
 
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="1:1 Aim: one sensitivity across Overwatch, CS2, Valorant, Apex &amp; Marvel Rivals">
+  <meta name="twitter:title" content="1:1 Aim: one sensitivity across Overwatch, CS2, Valorant, Apex, Marvel Rivals &amp; Deadlock">
   <meta name="twitter:description" content="1:1 aim across every game, weapon, and zoom: my recommended settings, a cross-game calculator, and the math behind it.">
   <meta name="twitter:image" content="https://game-sens.jor.dev/favicon.svg">
 
@@ -28,11 +28,11 @@
   {
     "@context": "https://schema.org",
     "@type": "TechArticle",
-    "headline": "1:1 Aim: one sensitivity across Overwatch, CS2, Valorant, Apex Legends, and Marvel Rivals",
+    "headline": "1:1 Aim: one sensitivity across Overwatch, CS2, Valorant, Apex Legends, Marvel Rivals, and Deadlock",
     "description": "How to get 1:1 aim across games, weapons, and zooms: mouse movement maps to degrees, the three interpretations of 1:1, the tangent math, per-game yaw values, and crosshair-exact zoom values for every game.",
     "author": { "@type": "Person", "name": "game-sens" },
     "mainEntityOfPage": "https://game-sens.jor.dev/",
-    "about": ["Overwatch", "CS2", "Valorant", "Apex Legends", "Marvel Rivals", "mouse sensitivity", "field of view", "ADS sensitivity", "eDPI"]
+    "about": ["Overwatch", "CS2", "Valorant", "Apex Legends", "Marvel Rivals", "Deadlock", "mouse sensitivity", "field of view", "ADS sensitivity", "eDPI"]
   }
   </script>
 </head>
@@ -159,11 +159,30 @@
       </table>
     </div>
 
+    <h3>Deadlock</h3>
+    <div class="table-wrap">
+      <table id="settings-deadlock">
+        <caption>The Camera FOV slider caps at 90, I max it. Zoom isn't publicly measured yet, see the notes.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Setting</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Camera FOV</th><td class="your-value">90 (max)</td></tr>
+          <tr><th scope="row">Mouse Sensitivity</th><td class="your-value">0.544</td></tr>
+          <tr><th scope="row">Zoom Sensitivity Ratio</th><td class="your-value">1.0 (default)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <p class="fineprint">
       Per-weapon details and sources: <a href="#zoom-overwatch">Overwatch</a>,
       <a href="#zoom-cs2">CS2</a>, <a href="#zoom-valorant">Valorant</a>,
       <a href="#zoom-apex">Apex Legends</a>,
-      <a href="#zoom-marvel-rivals">Marvel Rivals</a>.
+      <a href="#zoom-marvel-rivals">Marvel Rivals</a>,
+      <a href="#zoom-deadlock">Deadlock</a>.
     </p>
   </section>
 
@@ -192,6 +211,7 @@
           <option value="valorant">Valorant</option>
           <option value="apex">Apex Legends</option>
           <option value="rivals">Marvel Rivals</option>
+          <option value="deadlock">Deadlock</option>
         </select>
       </div>
 
@@ -213,6 +233,11 @@
       <div class="control">
         <label for="hip-apex-fov">Apex FOV: <output id="hip-apex-fov-value" for="hip-apex-fov">100</output></label>
         <input type="range" id="hip-apex-fov" min="70" max="110" step="1" value="100">
+      </div>
+
+      <div class="control">
+        <label for="hip-dl-fov">Deadlock Camera FOV: <output id="hip-dl-fov-value" for="hip-dl-fov">90</output>°</label>
+        <input type="range" id="hip-dl-fov" min="75" max="90" step="1" value="90">
       </div>
 
       <div class="control">
@@ -251,6 +276,7 @@
           <tr><th scope="row">Valorant</th><td class="your-value">0.215</td><td>0.215</td><td>344</td><td class="range-ok">✓ upper end of ≈200–400</td><td>103.00°</td><td>38.0 cm</td></tr>
           <tr><th scope="row">Apex Legends</th><td class="your-value">0.865</td><td>0.684</td><td>1384</td><td class="range-ok">✓ upper end of ≈600–1600</td><td>115.63°</td><td>30.0 cm</td></tr>
           <tr><th scope="row">Marvel Rivals</th><td class="your-value">0.686</td><td>0.862</td><td>1098</td><td class="range-ok">✓ lower end of ≈1000–2000</td><td>90.00°</td><td>47.7 cm</td></tr>
+          <tr><th scope="row">Deadlock</th><td class="your-value">0.544</td><td>0.684</td><td>870</td><td class="range-ok">✓ middle of ≈680–1200</td><td>90.00°</td><td>47.7 cm</td></tr>
         </tbody>
       </table>
     </div>
@@ -303,9 +329,10 @@
       Zooming reduces your FOV: you see fewer degrees, so the same mouse movement
       (= degrees) covers more of your screen. The same happens between games with
       different hipfire FOVs: Overwatch and Valorant run 103°, CS2 runs 106.26°,
-      Apex at the 100 setting runs 115.63°, and Marvel Rivals is fixed at roughly
-      90° (all 16:9). Any conversion that ignores FOV, like plain cm/360, gives you
-      a different on-screen result in every game.
+      Apex at the 100 setting runs 115.63°, Marvel Rivals is fixed at roughly 90°,
+      and Deadlock's Camera FOV slider caps at 90° (all 16:9). Any conversion that
+      ignores FOV, like plain cm/360, gives you a different on-screen result in
+      every game.
     </p>
   </section>
 
@@ -437,6 +464,7 @@
           <tr><th scope="row">Valorant</th><td class="your-value">0.07°</td></tr>
           <tr><th scope="row">Apex Legends</th><td class="your-value">0.022°</td></tr>
           <tr><th scope="row">Marvel Rivals</th><td class="your-value">0.017453°</td></tr>
+          <tr><th scope="row">Deadlock</th><td class="your-value">0.022°</td></tr>
         </tbody>
       </table>
     </div>
@@ -675,6 +703,42 @@
     </ul>
   </section>
 
+  <!-- ============================= ZOOM VALUES: DEADLOCK ============================= -->
+  <section id="zoom-deadlock" aria-labelledby="zoom-deadlock-h">
+    <h2 id="zoom-deadlock-h">Zoom values: Deadlock</h2>
+    <p>
+      Deadlock runs on Source 2 and uses the same 0.022 yaw as CS2, so a CS2 sens
+      carries over 1:1 before the FOV correction. The Camera FOV slider goes from
+      75 to 90 (horizontal, 16:9); I max it at 90, and the
+      <a href="#calculator">calculator</a> defaults to that. Every hero has a
+      right-click weapon zoom controlled by the <strong>Zoom Sensitivity
+      Ratio</strong> setting, and Vindicta's ultimate adds a proper scope with
+      multiple zoom levels.
+    </p>
+    <p>
+      This is the one game where I can't give you exact 0% values, because nobody
+      has published measured scoped FOVs. mouse-sensitivity.com models the zooms
+      per hero group (most heroes share one, a few differ, plus the Sharpshooter
+      item and Vindicta's scope), but the numbers sit behind their premium tier.
+      On top of that the zoom sensitivity has a bug history: for a while Vindicta's
+      scope ignored the setting entirely until a developer fixed it. So I leave the
+      ratio at the default 1.0 for now. The standard weapon zoom is mild, and the
+      milder the zoom, the less the match methods disagree, so whatever the default
+      matches, the error at the crosshair stays small. Like Marvel Rivals it's a
+      third-person game, so 1:1 here means camera rotation. I'll update this
+      section once solid measurements exist.
+    </p>
+
+    <p class="fineprint">Sources:</p>
+    <ul class="fineprint">
+      <li><a href="https://www.mouse-sensitivity.com/forums/topic/9424-deadlock/" rel="noopener">mouse-sensitivity.com forums, DPI Wizard (same engine scale as CS2; per-hero zoom aims; config file more accurate than the slider)</a></li>
+      <li><a href="https://mouse-sensitivity.com/n/deadlock/" rel="noopener">mouse-sensitivity.com (Camera FOV range 75–90, hero-group ADS and Vindicta Zoom aims)</a></li>
+      <li><a href="https://ultimatemove.eu/en/sensitivity-calculator-converter/" rel="noopener">ultimatemove.eu (yaw 0.022, 1:1 with CS2)</a></li>
+      <li><a href="https://forums.playdeadlock.com/threads/zoom-ratio-sensitivity-is-wrong-vindicta-scoped-ability-sensitivity-extremely-low.16531/" rel="noopener">Deadlock forums (zoom ratio and Vindicta scope sensitivity bugs, dev-confirmed fix)</a></li>
+      <li><a href="https://esportsmice.com/sensitivity/deadlock" rel="noopener">esportsmice.com (pro eDPI ≈680–1200, median 880)</a></li>
+    </ul>
+  </section>
+
   <!-- ============================= DISCLAIMER ============================= -->
   <section id="disclaimer" aria-labelledby="disclaimer-h">
     <h2 id="disclaimer-h">Disclaimer</h2>
@@ -698,8 +762,9 @@
     </ul>
     <p class="fineprint">
       All scoped FOVs and engine constants are community-derived (sources per
-      section). Overwatch, Counter-Strike, Valorant, Apex Legends, and Marvel Rivals
-      are trademarks of their respective owners; this is an unofficial fan resource.
+      section). Overwatch, Counter-Strike, Valorant, Apex Legends, Marvel Rivals,
+      and Deadlock are trademarks of their respective owners; this is an unofficial
+      fan resource.
     </p>
   </section>
 

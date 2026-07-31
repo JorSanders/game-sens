@@ -74,6 +74,8 @@ const hipOwFov      = document.getElementById("hip-ow-fov");
 const hipOwFovOut   = document.getElementById("hip-ow-fov-value");
 const hipApexFov    = document.getElementById("hip-apex-fov");
 const hipApexFovOut = document.getElementById("hip-apex-fov-value");
+const hipDlFov      = document.getElementById("hip-dl-fov");
+const hipDlFovOut   = document.getElementById("hip-dl-fov-value");
 const hipCs2Aspect  = document.getElementById("hip-cs2-aspect");
 const hipStatus     = document.getElementById("hip-status");
 const hipBody       = document.querySelector("#hipfire-table tbody");
@@ -90,6 +92,9 @@ const HIP_GAMES = {
   /* Fixed FOV, community-measured ~90 deg 16:9 -> tan(45 deg) = 1.
      Yaw is the measured pi/180, not the often-quoted Unreal 0.022. */
   rivals:    { label: "Marvel Rivals", yaw: 0.017453, proEdpi: [1000, 2000], t: () => 1 },
+  /* Source 2, same yaw as CS2. The Camera FOV slider is horizontal 16:9,
+     range 75-90 (sources in the Deadlock zoom section). */
+  deadlock:  { label: "Deadlock",     yaw: 0.022,  proEdpi: [680, 1200],  t: () => Math.tan((Number(hipDlFov.value) / 2) * DEG) },
 };
 
 function renderRow(tbody, name, cells, highlightIndex) {
@@ -195,6 +200,11 @@ hipApexFov.addEventListener("input", () => {
   hipApexFovOut.textContent = hipApexFov.value;
   renderHipfireTable();
   announceHipfireUpdate(`Apex FOV ${hipApexFov.value}`);
+});
+hipDlFov.addEventListener("input", () => {
+  hipDlFovOut.textContent = hipDlFov.value;
+  renderHipfireTable();
+  announceHipfireUpdate(`Deadlock Camera FOV ${hipDlFov.value}°`);
 });
 
 /* ------------------------------- charts --------------------------------- */
