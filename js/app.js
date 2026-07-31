@@ -19,7 +19,7 @@ const HEROES = [
   { name: "Ashe",       fov2: 65.81 },
   { name: "Cassidy",    fov2: 65.81 },
   { name: "Emre",       fov2: 69.02 },
-  { name: "Freja",      fov2: 76.31 },
+  { name: "Freja",      fov2: 76.32 },
 ];
 
 /* Heroes sharing the same scoped FOV have identical curves, so charts show
