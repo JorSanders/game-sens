@@ -690,9 +690,15 @@
     <p>
       Two caveats. NetEase doesn't publish the FOV and there is no FOV setting:
       community measurements point to roughly 90° at 16:9, which is what I use in
-      the <a href="#calculator">calculator</a>, but you'll also see 103 claimed. And
-      it's a third-person game, so 1:1 here means camera rotation, with some
-      third-person quirks around the crosshair that no setting can fully fix.
+      the <a href="#calculator">calculator</a>, but you'll also see 103 claimed. I
+      tested this myself with a ruler: measuring a full 360 and then sweeping a
+      landmark from screen edge to screen edge puts the FOV at 90° and clearly
+      rules out 103. My raw sweeps read a couple degrees high (92 to 94), but
+      that's the parallax you'd expect from the third-person camera orbiting
+      behind the character rather than rotating in place. The same test confirmed
+      the pi/180 <a href="#yaw">yaw</a>. And since it's a third-person game, 1:1 here means
+      camera rotation, with some third-person quirks around the crosshair that no
+      setting can fully fix.
     </p>
 
     <p class="fineprint">Sources:</p>
